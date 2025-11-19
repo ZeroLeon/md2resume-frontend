@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>陈思远 - 专业简历</title>
+    <meta name="description" content="陈思远 - 由MD2Resume生成的专业简历">
+    <meta name="keywords" content="简历, 陈思远, MD2Resume, Markdown, HTML">
+    <meta name="author" content="陈思远">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://resume-chen-siyuan-datascience.eth.limo">
+    <meta property="og:title" content="陈思远 - 专业简历">
+    <meta property="og:description" content="陈思远 - 由MD2Resume生成的专业简历">
+    <meta property="og:image" content="">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://resume-chen-siyuan-datascience.eth.limo">
+    <meta property="twitter:title" content="陈思远 - 专业简历">
+    <meta property="twitter:description" content="陈思远 - 由MD2Resume生成的专业简历">
+    <meta property="twitter:image" content="">
+
+    <style>
+        body {
+            background: #0a0e27;
+            color: #e2e8f0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .resume-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #0a0e27;
+            color: #e2e8f0;
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .resume-content h1 {
+            color: #ef4444;
+            font-size: 2.8em;
+            font-weight: 700;
+            text-shadow:
+                0 0 10px rgba(239, 68, 68, 0.8),
+                0 0 20px rgba(239, 68, 68, 0.6),
+                0 0 30px rgba(239, 68, 68, 0.4);
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .resume-content h2 {
+            color: #ef4444;
+            border-bottom: 2px solid #ef4444;
+            font-size: 1.6em;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            text-shadow: 0 0 10px rgba(239, 68, 68, 0.5);
+            position: relative;
+        }
+
+        .resume-content h2::before {
+            content: "💡";
+            margin-right: 10px;
+            filter: drop-shadow(0 0 8px rgba(239, 68, 68, 0.8));
+        }
+
+        .resume-content h3 {
+            color: #fbbf24;
+            font-size: 1.3em;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            text-shadow: 0 0 8px rgba(251, 191, 36, 0.5);
+        }
+
+        .contact-info {
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.1) 0%, rgba(245, 158, 11, 0.1) 100%);
+            border: 2px solid rgba(239, 68, 68, 0.3);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            color: #e2e8f0;
+            font-size: 1.1em;
+            box-shadow:
+                0 0 20px rgba(239, 68, 68, 0.2),
+                inset 0 0 20px rgba(239, 68, 68, 0.1);
+        }
+
+        .job-title {
+            color: #fbbf24;
+            text-shadow: 0 0 8px rgba(251, 191, 36, 0.6);
+            font-weight: 600;
+        }
+
+        .company-info {
+            color: #94a3b8;
+            font-style: italic;
+            margin-bottom: 12px;
+        }
+
+        a {
+            color: #ef4444;
+            text-decoration: none;
+            text-shadow: 0 0 8px rgba(239, 68, 68, 0.6);
+            border-bottom: 1px solid rgba(239, 68, 68, 0.5);
+        }
+
+        a:hover {
+            text-shadow:
+                0 0 12px rgba(239, 68, 68, 0.8),
+                0 0 20px rgba(239, 68, 68, 0.6);
+            border-bottom-color: #f87171;
+        }
+
+        code {
+            background: rgba(239, 68, 68, 0.2);
+            color: #fca5a5;
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, monospace;
+            font-size: 0.9em;
+            box-shadow: 0 0 10px rgba(239, 68, 68, 0.2);
+        }
+
+        pre {
+            background: rgba(239, 68, 68, 0.1);
+            border: 2px solid rgba(239, 68, 68, 0.3);
+            border-left: 4px solid #ef4444;
+            border-radius: 8px;
+            padding: 15px;
+            overflow-x: auto;
+            margin: 15px 0;
+            color: #fca5a5;
+            box-shadow:
+                0 0 20px rgba(239, 68, 68, 0.2),
+                inset 0 0 20px rgba(239, 68, 68, 0.1);
+        }
+
+        pre code {
+            background: none;
+            border: none;
+            color: #fca5a5;
+            box-shadow: none;
+        }
+
+        blockquote {
+            border-left: 4px solid #ef4444;
+            padding: 15px 20px;
+            margin: 15px 0;
+            color: #e2e8f0;
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.1) 0%, rgba(245, 158, 11, 0.1) 100%);
+            font-style: italic;
+            box-shadow: 0 0 15px rgba(239, 68, 68, 0.2);
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid rgba(239, 68, 68, 0.5);
+            margin: 25px 0;
+            box-shadow: 0 0 10px rgba(239, 68, 68, 0.3);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+
+        th, td {
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background: rgba(239, 68, 68, 0.2);
+            color: #fca5a5;
+            font-weight: 600;
+            text-shadow: 0 0 8px rgba(239, 68, 68, 0.5);
+        }
+
+        ul, ol {
+            margin-bottom: 15px;
+            padding-left: 25px;
+        }
+
+        li {
+            margin-bottom: 6px;
+            line-height: 1.6;
+        }
+
+        p {
+            margin-bottom: 12px;
+            line-height: 1.6;
+        }
+
+        .skill-tag {
+            background: rgba(239, 68, 68, 0.2);
+            color: #fca5a5;
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: 500;
+            display: inline-block;
+            margin: 2px;
+            box-shadow: 0 0 10px rgba(239, 68, 68, 0.3);
+        }
+
+        .skills-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 15px 0;
+        }
+
+        /* 页面底部信息 */
+        .footer-info {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.9em;
+            color: #94a3b8;
+        }
+    </style>
+</head>
+<body>
+    <div class="resume-container">
+        <div class="resume-content template-neon-red">
+<h1>陈思远</h1>
+<div class="contact-info">
+<strong>数据科学家</strong> | 📧 chen.siyuan@email.com | 📱 135-7777-7777 | 📍 上海市浦东新区 | 🌐 <a href="https://kaggle.com/chen-siyuan">kaggle.com/chen-siyuan</a>
+</div>
+<h2>💼 工作经历</h2>
+<h3>高级数据科学家 | 字节跳动 (2020.06 - 至今)</h3>
+<p><strong>负责项目</strong>: 抖音推荐系统算法优化</p>
+<ul>
+<li>设计并实现深度学习推荐模型，CTR提升35%</li>
+<li>建立实时特征工程管道，特征处理速度提升10倍</li>
+<li>优化模型推理性能，推理延迟从100ms降低至20ms</li>
+<li>主导A/B测试实验框架建设，实验效率提升200%</li>
+</ul>
+<h3>数据科学家 | 网易 (2018.03 - 2020.05)</h3>
+<p><strong>负责项目</strong>: 网易云音乐个性化推荐系统</p>
+<ul>
+<li>构建用户音乐偏好模型，推荐准确率提升40%</li>
+<li>开发协同过滤算法，解决冷启动问题</li>
+<li>建立用户行为分析体系，洞察用户偏好变化</li>
+<li>参与音乐版权预测，版权命中率提升25%</li>
+</ul>
+<h2>🎯 技术专长</h2>
+<h3>机器学习算法</h3>
+<div class="skills-grid">
+<span class="skill-tag">深度学习</span>
+<span class="skill-tag">CNN</span>
+<span class="skill-tag">RNN</span>
+<span class="skill-tag">Transformer</span>
+<span class="skill-tag">BERT</span>
+<span class="skill-tag">推荐系统</span>
+</div>
+<h3>数据工程</h3>
+<div class="skills-grid">
+<span class="skill-tag">Spark</span>
+<span class="skill-tag">Kafka</span>
+<span class="skill-tag">TensorFlow</span>
+<span class="skill-tag">PyTorch</span>
+<span class="skill-tag">Python</span>
+</div>
+<h2>🏆 项目成就</h2>
+<h3>📱 抖音推荐系统优化 (2020-2023)</h3>
+<p><strong>项目描述</strong>: 日活6亿+短视频平台的个性化推荐系统</p>
+<ul>
+<li>设计多目标优化模型，同时优化CTR和用户停留时长</li>
+<li>建立实时特征工程平台，支持亿级特征实时计算</li>
+<li>实现模型自动调优，模型更新频率从天级提升至小时级</li>
+<li>用户日均使用时长提升20%，推荐点击率提升35%</li>
+</ul>
+<h2>🎓 教育背景</h2>
+<h3>计算机科学 | 硕士 | 上海交通大学 (2014.09 - 2016.06)</h3>
+<ul>
+<li><strong>GPA</strong>: 3.8/4.0</li>
+<li><strong>发表论文</strong>: 在顶级会议发表论文3篇（KDD、WWW、CIKM）</li>
+<li><strong>荣誉奖项</strong>: 国家奖学金、优秀硕士论文</li>
+</ul>
+<h2>🏅 专业认证</h2>
+<div class="skills-grid">
+<span class="skill-tag">Google Cloud认证专业数据工程师</span>
+<span class="skill-tag">AWS认证机器学习专家</span>
+<span class="skill-tag">Kaggle Masters</span>
+</div>
+        </div>
+        <div class="footer-info">
+            <p>📄 由 <strong>MD2Resume</strong> 生成 | 🚀 通过 <strong>PinMe</strong> 永久托管</p>
+            <p>生成时间: 2024/1/19 16:34:03</p>
+        </div>
+    </div>
+
+    <script>
+        // 简单的页面统计
+        if (typeof window !== 'undefined') {
+            console.log('📄 MD2Resume生成的简历');
+            console.log('🚀 由PinMe托管在IPFS网络');
+            console.log('⏰ 生成时间: 2024-01-19T08:34:03.000Z');
+        }
+    </script>
+</body>
+</html>
