@@ -1,0 +1,905 @@
+/* 简历模板样式 */
+
+/* 通用简历容器样式 */
+.resume-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    background: white;
+    min-height: 100vh;
+}
+
+.resume-content {
+    line-height: 1.6;
+    color: #333;
+}
+
+/* 通用元素样式 */
+.resume-content h1 {
+    margin-bottom: 10px;
+    line-height: 1.2;
+}
+
+.resume-content h2 {
+    margin-top: 30px;
+    margin-bottom: 15px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid;
+}
+
+.resume-content h3 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.resume-content h4, .resume-content h5, .resume-content h6 {
+    margin-top: 15px;
+    margin-bottom: 8px;
+}
+
+.resume-content p {
+    margin-bottom: 12px;
+}
+
+.resume-content ul, .resume-content ol {
+    margin-bottom: 15px;
+    padding-left: 25px;
+}
+
+.resume-content li {
+    margin-bottom: 6px;
+}
+
+.resume-content a {
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.resume-content strong {
+    font-weight: 600;
+}
+
+.resume-content em {
+    font-style: italic;
+}
+
+.resume-content code {
+    font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, monospace;
+    background: rgba(0, 0, 0, 0.1);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.9em;
+}
+
+.resume-content pre {
+    background: #f6f8fa;
+    border-radius: 8px;
+    padding: 15px;
+    overflow-x: auto;
+    margin: 15px 0;
+}
+
+.resume-content pre code {
+    background: none;
+    padding: 0;
+    font-size: 0.9em;
+}
+
+.resume-content blockquote {
+    border-left: 4px solid;
+    padding-left: 15px;
+    margin: 15px 0;
+    font-style: italic;
+}
+
+.resume-content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 15px 0;
+}
+
+.resume-content th, .resume-content td {
+    border: 1px solid;
+    padding: 10px;
+    text-align: left;
+}
+
+.resume-content th {
+    font-weight: 600;
+}
+
+.resume-content hr {
+    border: none;
+    border-top: 1px solid;
+    margin: 25px 0;
+}
+
+/* 联系信息样式 */
+.contact-info {
+    margin-bottom: 25px;
+    font-size: 1.1em;
+    opacity: 0.9;
+}
+
+.contact-info strong {
+    font-weight: 600;
+}
+
+/* 工作经历样式 */
+.job-title {
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.company-info {
+    opacity: 0.8;
+    margin-bottom: 12px;
+}
+
+/* 技能标签样式 */
+.skills-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 15px 0;
+}
+
+.skill-tag {
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.9em;
+    font-weight: 500;
+}
+
+/* 项目成就样式 */
+.achievement-list > li {
+    position: relative;
+    padding-left: 20px;
+}
+
+.achievement-list > li::before {
+    content: "▸";
+    position: absolute;
+    left: 0;
+    font-weight: bold;
+}
+
+/* ==================== */
+/* 1. 极客黑模板 */
+/* ==================== */
+.template-hacker-black {
+    background: #0d1117;
+    color: #c9d1d9;
+}
+
+.template-hacker-black .resume-container {
+    background: #0d1117;
+    color: #c9d1d9;
+}
+
+.template-hacker-black h1 {
+    color: #58a6ff;
+    font-size: 2.5em;
+    font-weight: 700;
+    text-shadow: 0 0 20px rgba(88, 166, 255, 0.5);
+}
+
+.template-hacker-black h2 {
+    color: #3fb950;
+    border-bottom-color: #3fb950;
+    font-size: 1.5em;
+    position: relative;
+}
+
+.template-hacker-black h2::before {
+    content: ">> ";
+    color: #3fb950;
+}
+
+.template-hacker-black h3 {
+    color: #58a6ff;
+    font-size: 1.3em;
+}
+
+.template-hacker-black .contact-info {
+    color: #8b949e;
+    border-left: 3px solid #3fb950;
+    padding-left: 15px;
+    margin: 20px 0;
+}
+
+.template-hacker-black .job-title {
+    color: #58a6ff;
+}
+
+.template-hacker-black .company-info {
+    color: #8b949e;
+}
+
+.template-hacker-black a {
+    color: #58a6ff;
+    border-bottom: 1px dotted #58a6ff;
+}
+
+.template-hacker-black a:hover {
+    color: #79c0ff;
+    border-bottom-color: #79c0ff;
+    text-shadow: 0 0 8px rgba(88, 166, 255, 0.8);
+}
+
+.template-hacker-black code {
+    background: #161b22;
+    color: #3fb950;
+    border: 1px solid #30363d;
+}
+
+.template-hacker-black pre {
+    background: #161b22;
+    border: 1px solid #30363d;
+    color: #c9d1d9;
+}
+
+.template-hacker-black blockquote {
+    border-left-color: #3fb950;
+    color: #8b949e;
+}
+
+.template-hacker-black hr {
+    border-top-color: #30363d;
+}
+
+.template-hacker-black th, .template-hacker-black td {
+    border-color: #30363d;
+}
+
+.template-hacker-black th {
+    background: #161b22;
+    color: #58a6ff;
+}
+
+/* ==================== */
+/* 2. 终端白模板 */
+/* ==================== */
+.template-terminal-white .resume-container {
+    background: #ffffff;
+    font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, monospace;
+}
+
+.template-terminal-white h1 {
+    color: #0366d6;
+    font-size: 2.2em;
+    font-weight: 700;
+    border-bottom: 3px solid #0366d6;
+    padding-bottom: 10px;
+}
+
+.template-terminal-white h2 {
+    color: #0366d6;
+    border-bottom-color: #0366d6;
+    font-size: 1.4em;
+}
+
+.template-terminal-white h2::before {
+    content: "$ ";
+    color: #0366d6;
+    font-weight: bold;
+}
+
+.template-terminal-white h3 {
+    color: #24292e;
+    font-size: 1.2em;
+}
+
+.template-terminal-white .contact-info {
+    background: #f6f8fa;
+    border: 1px solid #d1d5da;
+    border-radius: 6px;
+    padding: 15px;
+    margin: 20px 0;
+    color: #586069;
+}
+
+.template-terminal-white a {
+    color: #0366d6;
+    border-bottom: 1px solid #0366d6;
+}
+
+.template-terminal-white a:hover {
+    background: #0366d6;
+    color: white;
+}
+
+.template-terminal-white code {
+    background: #f6f8fa;
+    color: #d73a49;
+    border: 1px solid #d1d5da;
+}
+
+.template-terminal-white pre {
+    background: #f6f8fa;
+    border: 1px solid #d1d5da;
+}
+
+/* ==================== */
+/* 3. 代码灰模板 */
+/* ==================== */
+.template-code-gray .resume-container {
+    background: #f6f8fa;
+    font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, monospace;
+}
+
+.template-code-gray h1 {
+    color: #24292e;
+    font-size: 2.3em;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+.template-code-gray h1::after {
+    content: "{}";
+    color: #586069;
+    font-size: 0.8em;
+    margin-left: 10px;
+}
+
+.template-code-gray h2 {
+    color: #0366d6;
+    border-bottom-color: #d1d5da;
+    font-size: 1.4em;
+}
+
+.template-code-gray h3 {
+    color: #24292e;
+    font-size: 1.2em;
+}
+
+.template-code-gray .contact-info {
+    background: white;
+    border: 1px solid #d1d5da;
+    border-left: 4px solid #0366d6;
+    padding: 15px;
+    margin: 20px 0;
+}
+
+.template-code-gray a {
+    color: #0366d6;
+    text-decoration: underline;
+}
+
+.template-code-gray a:hover {
+    color: #0256cc;
+}
+
+.template-code-gray code {
+    background: white;
+    color: #e36209;
+    border: 1px solid #d1d5da;
+}
+
+.template-code-gray pre {
+    background: white;
+    border: 1px solid #d1d5da;
+    color: #24292e;
+}
+
+/* ==================== */
+/* 4. GitHub蓝模板 */
+/* ==================== */
+.template-github-blue .resume-container {
+    background: #ffffff;
+}
+
+.template-github-blue h1 {
+    color: #0366d6;
+    font-size: 2.4em;
+    font-weight: 700;
+}
+
+.template-github-blue h2 {
+    color: #0366d6;
+    border-bottom-color: #e1e4e8;
+    font-size: 1.5em;
+}
+
+.template-github-blue h3 {
+    color: #24292e;
+    font-size: 1.3em;
+}
+
+.template-github-blue .contact-info {
+    background: #f6f8fa;
+    border-radius: 6px;
+    padding: 20px;
+    margin: 25px 0;
+    color: #586069;
+    border: 1px solid #e1e4e8;
+}
+
+.template-github-blue .job-title {
+    color: #0366d6;
+}
+
+.template-github-blue .company-info {
+    color: #586069;
+    font-style: italic;
+}
+
+.template-github-blue a {
+    color: #0366d6;
+    text-decoration: none;
+}
+
+.template-github-blue a:hover {
+    text-decoration: underline;
+}
+
+.template-github-blue code {
+    background: #f6f8fa;
+    color: #d73a49;
+}
+
+.template-github-blue pre {
+    background: #f6f8fa;
+    border-radius: 6px;
+    border: 1px solid #e1e4e8;
+}
+
+.template-github-blue blockquote {
+    border-left-color: #d1d5da;
+    color: #6a737d;
+}
+
+.template-github-blue hr {
+    border-top-color: #e1e4e8;
+}
+
+.template-github-blue th, .template-github-blue td {
+    border-color: #e1e4e8;
+}
+
+.template-github-blue th {
+    background: #f6f8fa;
+    color: #24292e;
+}
+
+/* ==================== */
+/* 5. 简约绿模板 */
+/* ==================== */
+.template-minimal-green .resume-container {
+    background: #ffffff;
+}
+
+.template-minimal-green h1 {
+    color: #28a745;
+    font-size: 2.5em;
+    font-weight: 300;
+    margin-bottom: 20px;
+}
+
+.template-minimal-green h2 {
+    color: #28a745;
+    border-bottom-color: #28a745;
+    font-size: 1.4em;
+    font-weight: 500;
+}
+
+.template-minimal-green h3 {
+    color: #24292e;
+    font-size: 1.2em;
+    font-weight: 500;
+}
+
+.template-minimal-green .contact-info {
+    color: #6c757d;
+    font-size: 1.1em;
+    margin: 15px 0 25px 0;
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: 8px;
+}
+
+.template-minimal-green .job-title {
+    color: #28a745;
+}
+
+.template-minimal-green .company-info {
+    color: #6c757d;
+}
+
+.template-minimal-green a {
+    color: #28a745;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+}
+
+.template-minimal-green a:hover {
+    border-bottom-color: #28a745;
+}
+
+.template-minimal-green code {
+    background: #e8f5e8;
+    color: #155724;
+    border-radius: 4px;
+}
+
+.template-minimal-green pre {
+    background: #f8f9fa;
+    border-left: 4px solid #28a745;
+}
+
+.template-minimal-green blockquote {
+    border-left-color: #28a745;
+    color: #6c757d;
+    background: #f8f9fa;
+    padding: 15px 20px;
+}
+
+/* ==================== */
+/* 6. 商务橙模板 */
+/* ==================== */
+.template-business-orange .resume-container {
+    background: #ffffff;
+}
+
+.template-business-orange h1 {
+    color: #fd7e14;
+    font-size: 2.2em;
+    font-weight: 700;
+    border-bottom: 4px solid #fd7e14;
+    padding-bottom: 10px;
+}
+
+.template-business-orange h2 {
+    color: #fd7e14;
+    border-bottom-color: #fd7e14;
+    font-size: 1.5em;
+    font-weight: 600;
+}
+
+.template-business-orange h3 {
+    color: #343a40;
+    font-size: 1.3em;
+    font-weight: 600;
+}
+
+.template-business-orange .contact-info {
+    background: linear-gradient(135deg, #fff5f0 0%, #ffe8d6 100%);
+    border-left: 4px solid #fd7e14;
+    padding: 20px;
+    margin: 20px 0;
+    color: #495057;
+}
+
+.template-business-orange .job-title {
+    color: #fd7e14;
+    font-weight: 600;
+}
+
+.template-business-orange .company-info {
+    color: #6c757d;
+    font-style: italic;
+}
+
+.template-business-orange a {
+    color: #fd7e14;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.template-business-orange a:hover {
+    text-decoration: underline;
+    color: #e8590c;
+}
+
+.template-business-orange code {
+    background: #fff3cd;
+    color: #856404;
+    border: 1px solid #ffeaa7;
+}
+
+.template-business-orange pre {
+    background: #fff3cd;
+    border-left: 4px solid #fd7e14;
+}
+
+.template-business-orange blockquote {
+    border-left-color: #fd7e14;
+    color: #856404;
+    background: #fff3cd;
+}
+
+/* ==================== */
+/* 7. 渐变紫模板 */
+/* ==================== */
+.template-gradient-purple .resume-container {
+    background: linear-gradient(135deg, #f8f9ff 0%, #f5f3ff 100%);
+}
+
+.template-gradient-purple h1 {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-size: 2.6em;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+.template-gradient-purple h2 {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    border-bottom: 2px solid #667eea;
+    font-size: 1.5em;
+}
+
+.template-gradient-purple h3 {
+    color: #4a5568;
+    font-size: 1.3em;
+}
+
+.template-gradient-purple .contact-info {
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+    border: 1px solid rgba(102, 126, 234, 0.2);
+    border-radius: 12px;
+    padding: 20px;
+    margin: 20px 0;
+    color: #4a5568;
+}
+
+.template-gradient-purple .job-title {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.template-gradient-purple .company-info {
+    color: #718096;
+}
+
+.template-gradient-purple a {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.template-gradient-purple a:hover {
+    text-decoration: underline;
+}
+
+.template-gradient-purple code {
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+    color: #553c9a;
+    border: 1px solid rgba(102, 126, 234, 0.2);
+}
+
+.template-gradient-purple pre {
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%);
+    border: 1px solid rgba(102, 126, 234, 0.2);
+    border-left: 4px solid #667eea;
+}
+
+.template-gradient-purple blockquote {
+    border-left-color: #667eea;
+    color: #4a5568;
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%);
+}
+
+/* ==================== */
+/* 8. 霓虹红模板 */
+/* ==================== */
+.template-neon-red .resume-container {
+    background: #0a0e27;
+    color: #e2e8f0;
+}
+
+.template-neon-red h1 {
+    color: #ef4444;
+    font-size: 2.8em;
+    font-weight: 700;
+    text-shadow:
+        0 0 10px rgba(239, 68, 68, 0.8),
+        0 0 20px rgba(239, 68, 68, 0.6),
+        0 0 30px rgba(239, 68, 68, 0.4);
+    margin-bottom: 5px;
+}
+
+.template-neon-red h2 {
+    color: #ef4444;
+    border-bottom: 2px solid #ef4444;
+    font-size: 1.6em;
+    text-shadow: 0 0 10px rgba(239, 68, 68, 0.5);
+    position: relative;
+}
+
+.template-neon-red h2::before {
+    content: "💡";
+    margin-right: 10px;
+    filter: drop-shadow(0 0 8px rgba(239, 68, 68, 0.8));
+}
+
+.template-neon-red h3 {
+    color: #fbbf24;
+    font-size: 1.3em;
+    text-shadow: 0 0 8px rgba(251, 191, 36, 0.5);
+}
+
+.template-neon-red .contact-info {
+    background: linear-gradient(135deg, rgba(239, 68, 68, 0.1) 0%, rgba(245, 158, 11, 0.1) 100%);
+    border: 2px solid rgba(239, 68, 68, 0.3);
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px 0;
+    box-shadow:
+        0 0 20px rgba(239, 68, 68, 0.2),
+        inset 0 0 20px rgba(239, 68, 68, 0.1);
+    color: #e2e8f0;
+}
+
+.template-neon-red .job-title {
+    color: #fbbf24;
+    text-shadow: 0 0 8px rgba(251, 191, 36, 0.6);
+}
+
+.template-neon-red .company-info {
+    color: #94a3b8;
+    font-style: italic;
+}
+
+.template-neon-red a {
+    color: #ef4444;
+    text-decoration: none;
+    text-shadow: 0 0 8px rgba(239, 68, 68, 0.6);
+    border-bottom: 1px solid rgba(239, 68, 68, 0.5);
+}
+
+.template-neon-red a:hover {
+    text-shadow:
+        0 0 12px rgba(239, 68, 68, 0.8),
+        0 0 20px rgba(239, 68, 68, 0.6);
+    border-bottom-color: #f87171;
+}
+
+.template-neon-red code {
+    background: rgba(239, 68, 68, 0.2);
+    color: #fca5a5;
+    border: 1px solid rgba(239, 68, 68, 0.3);
+    box-shadow: 0 0 10px rgba(239, 68, 68, 0.2);
+}
+
+.template-neon-red pre {
+    background: rgba(239, 68, 68, 0.1);
+    border: 2px solid rgba(239, 68, 68, 0.3);
+    border-left: 4px solid #ef4444;
+    box-shadow:
+        0 0 20px rgba(239, 68, 68, 0.2),
+        inset 0 0 20px rgba(239, 68, 68, 0.1);
+    color: #fca5a5;
+}
+
+.template-neon-red blockquote {
+    border-left-color: #ef4444;
+    color: #e2e8f0;
+    background: linear-gradient(135deg, rgba(239, 68, 68, 0.1) 0%, rgba(245, 158, 11, 0.1) 100%);
+    box-shadow: 0 0 15px rgba(239, 68, 68, 0.2);
+}
+
+.template-neon-red hr {
+    border-top-color: rgba(239, 68, 68, 0.5);
+    box-shadow: 0 0 10px rgba(239, 68, 68, 0.3);
+}
+
+.template-neon-red th, .template-neon-red td {
+    border-color: rgba(239, 68, 68, 0.3);
+}
+
+.template-neon-red th {
+    background: rgba(239, 68, 68, 0.2);
+    color: #fca5a5;
+    text-shadow: 0 0 8px rgba(239, 68, 68, 0.5);
+}
+
+/* 技能标签特殊样式 */
+.template-hacker-black .skill-tag {
+    background: rgba(63, 185, 80, 0.2);
+    color: #3fb950;
+    border: 1px solid #3fb950;
+}
+
+.template-terminal-white .skill-tag {
+    background: #f6f8fa;
+    color: #0366d6;
+    border: 1px solid #d1d5da;
+}
+
+.template-code-gray .skill-tag {
+    background: white;
+    color: #0366d6;
+    border: 1px solid #d1d5da;
+}
+
+.template-github-blue .skill-tag {
+    background: #f6f8fa;
+    color: #0366d6;
+    border: 1px solid #e1e4e8;
+}
+
+.template-minimal-green .skill-tag {
+    background: #e8f5e8;
+    color: #28a745;
+    border: 1px solid #c3e6cb;
+}
+
+.template-business-orange .skill-tag {
+    background: #fff3cd;
+    color: #fd7e14;
+    border: 1px solid #ffeaa7;
+}
+
+.template-gradient-purple .skill-tag {
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+    color: #667eea;
+    border: 1px solid rgba(102, 126, 234, 0.3);
+}
+
+.template-neon-red .skill-tag {
+    background: rgba(239, 68, 68, 0.2);
+    color: #fca5a5;
+    border: 1px solid rgba(239, 68, 68, 0.3);
+    box-shadow: 0 0 10px rgba(239, 68, 68, 0.3);
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .resume-container {
+        padding: 20px 15px;
+    }
+
+    .resume-content h1 {
+        font-size: 2em;
+    }
+
+    .resume-content h2 {
+        font-size: 1.3em;
+    }
+
+    .resume-content h3 {
+        font-size: 1.2em;
+    }
+
+    .contact-info {
+        font-size: 1em;
+    }
+
+    .skills-grid {
+        gap: 8px;
+    }
+
+    .skill-tag {
+        font-size: 0.85em;
+        padding: 3px 10px;
+    }
+}
+
+@media print {
+    .resume-container {
+        padding: 20px;
+        background: white !important;
+        color: black !important;
+    }
+
+    .template-neon-red .resume-container {
+        background: white !important;
+        color: black !important;
+    }
+
+    .template-hacker-black .resume-container {
+        background: white !important;
+        color: black !important;
+    }
+}
