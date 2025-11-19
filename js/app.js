@@ -1,5 +1,342 @@
-// 导入模板函数
-import { getTemplateCSS } from './templates.js';
+// 模板CSS获取函数
+function getTemplateCSS(templateName) {
+    const templates = {
+        'hacker-black': `
+            body {
+                background: #0d1117;
+                color: #c9d1d9;
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+                margin: 0;
+                padding: 20px;
+            }
+
+            .resume-container {
+                max-width: 800px;
+                margin: 0 auto;
+                background: #0d1117;
+                color: #c9d1d9;
+                min-height: 100vh;
+                padding: 40px 20px;
+            }
+
+            .resume-content h1 {
+                color: #58a6ff;
+                font-size: 2.5em;
+                font-weight: 700;
+                text-shadow: 0 0 20px rgba(88, 166, 255, 0.5);
+                margin-bottom: 10px;
+                line-height: 1.2;
+            }
+
+            .resume-content h2 {
+                color: #3fb950;
+                border-bottom: 2px solid #3fb950;
+                font-size: 1.5em;
+                position: relative;
+                margin-top: 30px;
+                margin-bottom: 15px;
+                padding-bottom: 8px;
+            }
+
+            .resume-content h2::before {
+                content: ">> ";
+                color: #3fb950;
+            }
+
+            .resume-content h3 {
+                color: #58a6ff;
+                font-size: 1.3em;
+                margin-top: 20px;
+                margin-bottom: 10px;
+            }
+
+            .contact-info {
+                color: #8b949e;
+                border-left: 3px solid #3fb950;
+                padding-left: 15px;
+                margin: 20px 0;
+                font-size: 1.1em;
+            }
+
+            .job-title {
+                color: #58a6ff;
+                font-weight: 600;
+            }
+
+            .company-info {
+                color: #8b949e;
+                opacity: 0.8;
+                margin-bottom: 12px;
+            }
+
+            a {
+                color: #58a6ff;
+                border-bottom: 1px dotted #58a6ff;
+                text-decoration: none;
+            }
+
+            a:hover {
+                color: #79c0ff;
+                border-bottom-color: #79c0ff;
+                text-shadow: 0 0 8px rgba(88, 166, 255, 0.8);
+            }
+
+            code {
+                background: #161b22;
+                color: #3fb950;
+                border: 1px solid #30363d;
+                padding: 2px 6px;
+                border-radius: 4px;
+                font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, monospace;
+                font-size: 0.9em;
+            }
+
+            pre {
+                background: #161b22;
+                border: 1px solid #30363d;
+                border-radius: 8px;
+                padding: 15px;
+                overflow-x: auto;
+                margin: 15px 0;
+            }
+
+            pre code {
+                background: none;
+                border: none;
+                color: #c9d1d9;
+            }
+
+            blockquote {
+                border-left: 4px solid #3fb950;
+                padding-left: 15px;
+                margin: 15px 0;
+                color: #8b949e;
+                font-style: italic;
+            }
+
+            hr {
+                border: none;
+                border-top: 1px solid #30363d;
+                margin: 25px 0;
+            }
+
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                margin: 15px 0;
+            }
+
+            th, td {
+                border: 1px solid #30363d;
+                padding: 10px;
+                text-align: left;
+            }
+
+            th {
+                background: #161b22;
+                color: #58a6ff;
+                font-weight: 600;
+            }
+
+            ul, ol {
+                margin-bottom: 15px;
+                padding-left: 25px;
+            }
+
+            li {
+                margin-bottom: 6px;
+                line-height: 1.6;
+            }
+
+            p {
+                margin-bottom: 12px;
+                line-height: 1.6;
+            }
+
+            .skill-tag {
+                background: rgba(63, 185, 80, 0.2);
+                color: #3fb950;
+                border: 1px solid #3fb950;
+                padding: 4px 12px;
+                border-radius: 20px;
+                font-size: 0.9em;
+                font-weight: 500;
+                display: inline-block;
+                margin: 2px;
+            }
+
+            .skills-grid {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 8px;
+                margin: 15px 0;
+            }
+        `,
+        'github-blue': `
+            body {
+                background: #ffffff;
+                color: #24292e;
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+                margin: 0;
+                padding: 20px;
+            }
+
+            .resume-container {
+                max-width: 800px;
+                margin: 0 auto;
+                background: #ffffff;
+                color: #24292e;
+                min-height: 100vh;
+                padding: 40px 20px;
+            }
+
+            .resume-content h1 {
+                color: #0366d6;
+                font-size: 2.4em;
+                font-weight: 700;
+                margin-bottom: 15px;
+                line-height: 1.2;
+            }
+
+            .resume-content h2 {
+                color: #0366d6;
+                border-bottom: 2px solid #e1e4e8;
+                font-size: 1.5em;
+                margin-top: 30px;
+                margin-bottom: 15px;
+                padding-bottom: 8px;
+            }
+
+            .resume-content h3 {
+                color: #24292e;
+                font-size: 1.3em;
+                margin-top: 20px;
+                margin-bottom: 10px;
+            }
+
+            .contact-info {
+                background: #f6f8fa;
+                border: 1px solid #e1e4e8;
+                border-radius: 6px;
+                padding: 20px;
+                margin: 25px 0;
+                color: #586069;
+                font-size: 1.1em;
+            }
+
+            .job-title {
+                color: #0366d6;
+                font-weight: 600;
+            }
+
+            .company-info {
+                color: #586069;
+                font-style: italic;
+                margin-bottom: 12px;
+            }
+
+            a {
+                color: #0366d6;
+                text-decoration: none;
+            }
+
+            a:hover {
+                text-decoration: underline;
+            }
+
+            code {
+                background: #f6f8fa;
+                color: #d73a49;
+                padding: 2px 6px;
+                border-radius: 4px;
+                font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, monospace;
+                font-size: 0.9em;
+            }
+
+            pre {
+                background: #f6f8fa;
+                border: 1px solid #e1e4e8;
+                border-radius: 6px;
+                padding: 15px;
+                overflow-x: auto;
+                margin: 15px 0;
+            }
+
+            pre code {
+                background: none;
+                color: #24292e;
+            }
+
+            blockquote {
+                border-left: 4px solid #d1d5da;
+                padding-left: 15px;
+                margin: 15px 0;
+                color: #6a737d;
+                font-style: italic;
+            }
+
+            hr {
+                border: none;
+                border-top: 1px solid #e1e4e8;
+                margin: 25px 0;
+            }
+
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                margin: 15px 0;
+            }
+
+            th, td {
+                border: 1px solid #e1e4e8;
+                padding: 10px;
+                text-align: left;
+            }
+
+            th {
+                background: #f6f8fa;
+                color: #24292e;
+                font-weight: 600;
+            }
+
+            ul, ol {
+                margin-bottom: 15px;
+                padding-left: 25px;
+            }
+
+            li {
+                margin-bottom: 6px;
+                line-height: 1.6;
+            }
+
+            p {
+                margin-bottom: 12px;
+                line-height: 1.6;
+            }
+
+            .skill-tag {
+                background: #f6f8fa;
+                color: #0366d6;
+                border: 1px solid #e1e4e8;
+                padding: 4px 12px;
+                border-radius: 20px;
+                font-size: 0.9em;
+                font-weight: 500;
+                display: inline-block;
+                margin: 2px;
+            }
+
+            .skills-grid {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 8px;
+                margin: 15px 0;
+            }
+        `
+    };
+
+    return templates[templateName] || templates['github-blue'];
+}
 
 class MD2Resume {
     constructor() {

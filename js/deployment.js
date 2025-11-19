@@ -1,8 +1,5 @@
-// 导入getTemplateCSS函数
-import { getTemplateCSS } from './templates.js';
-
 // PinMe部署管理类
-export class DeploymentManager {
+class DeploymentManager {
     constructor() {
         this.deployHistory = this.loadDeployHistory();
         this.bindEvents();
@@ -10,9 +7,11 @@ export class DeploymentManager {
 
     getApiUrl() {
         // 在生产环境使用环境变量，开发环境使用localhost
-        const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:3001';
+        // 检查是否在生产环境（通过检测域名）
+        const isProduction = window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1';
+        const apiUrl = isProduction ? 'https://md2resume-backend-production.up.railway.app' : 'http://localhost:3001';
+        console.log('当前环境:', isProduction ? '生产环境' : '开发环境');
         console.log('当前API URL:', apiUrl);
-        console.log('环境变量VITE_API_URL:', import.meta.env.VITE_API_URL);
         return apiUrl;
     }
 
