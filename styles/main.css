@@ -667,6 +667,231 @@ body {
     background: #a8a8a8;
 }
 
+/* 成功弹窗样式 */
+.success-modal {
+    max-width: 700px;
+    max-height: 90vh;
+    overflow: hidden;
+}
+
+.success-modal .modal-header {
+    text-align: center;
+    padding: 30px 25px 20px;
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(5, 150, 105, 0.1) 100%);
+    border-bottom: 2px solid #10b981;
+    position: relative;
+}
+
+.success-icon {
+    font-size: 3rem;
+    margin-bottom: 15px;
+    animation: success-bounce 0.6s ease-out;
+}
+
+@keyframes success-bounce {
+    0% { transform: scale(0); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+
+.success-modal h3 {
+    color: #10b981;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0;
+}
+
+.success-modal .modal-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+.success-message {
+    text-align: center;
+    margin-bottom: 25px;
+    padding: 15px;
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.05) 0%, rgba(5, 150, 105, 0.05) 100%);
+    border-radius: 10px;
+    border: 1px solid rgba(16, 185, 129, 0.2);
+}
+
+.success-message p {
+    color: #059669;
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin: 0;
+}
+
+.links-section,
+.features-section,
+.tips-section {
+    margin-bottom: 25px;
+    background: #f8f9fa;
+    border-radius: 10px;
+    padding: 20px;
+    border: 1px solid #e9ecef;
+}
+
+.links-section h4,
+.features-section h4,
+.tips-section h4 {
+    color: #333;
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.link-item {
+    margin-bottom: 15px;
+}
+
+.link-item:last-child {
+    margin-bottom: 0;
+}
+
+.link-item label {
+    display: block;
+    color: #495057;
+    font-weight: 500;
+    margin-bottom: 8px;
+    font-size: 0.95rem;
+}
+
+.link-wrapper {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.link-input {
+    flex: 1;
+    padding: 12px 15px;
+    border: 2px solid #e1e8ed;
+    border-radius: 8px;
+    font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, monospace;
+    font-size: 0.9rem;
+    background: white;
+    color: #333;
+    transition: all 0.3s ease;
+    user-select: all;
+    -webkit-user-select: all;
+    -moz-user-select: all;
+    -ms-user-select: all;
+}
+
+.link-input:focus {
+    outline: none;
+    border-color: #10b981;
+    box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+}
+
+.link-input:hover {
+    border-color: #10b981;
+}
+
+.copy-btn {
+    padding: 12px 16px;
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    min-width: 80px;
+}
+
+.copy-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+}
+
+.copy-btn:active {
+    transform: translateY(0);
+}
+
+.copy-btn.copied {
+    background: linear-gradient(135deg, #059669 0%, #047857 100%);
+}
+
+.features-section ul,
+.tips-section ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.features-section li,
+.tips-section li {
+    padding: 8px 0;
+    color: #495057;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    border-bottom: 1px solid rgba(233, 236, 239, 0.5);
+}
+
+.features-section li:last-child,
+.tips-section li:last-child {
+    border-bottom: none;
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    padding: 20px 25px;
+    background: #f8f9fa;
+    border-top: 1px solid #e1e8ed;
+    border-radius: 0 0 15px 15px;
+    flex-wrap: wrap;
+}
+
+/* 成功弹窗响应式 */
+@media (max-width: 768px) {
+    .success-modal {
+        max-width: 95%;
+        max-height: 95vh;
+    }
+
+    .success-modal .modal-header {
+        padding: 20px 15px 15px;
+    }
+
+    .success-icon {
+        font-size: 2.5rem;
+        margin-bottom: 10px;
+    }
+
+    .success-modal h3 {
+        font-size: 1.3rem;
+    }
+
+    .link-wrapper {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .copy-btn {
+        width: 100%;
+    }
+
+    .modal-footer {
+        padding: 15px;
+        gap: 10px;
+    }
+
+    .modal-footer .btn {
+        flex: 1;
+        min-width: auto;
+    }
+}
+
 /* 响应式设计 */
 @media (max-width: 768px) {
     .container {

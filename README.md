@@ -1,108 +1,55 @@
 # MD2Resume Frontend
 
-## 📋 概述
-
-MD2Resume前端界面，提供Markdown简历编辑和实时预览功能。
-
-## 🚀 部署到Vercel
-
-### 前置要求
-- GitHub账号
-- Vercel账号
-- 后端API URL
-
-### 部署步骤
-
-1. **推送到GitHub**
-   ```bash
-   git init
-   git add .
-   git commit -m "Initial commit"
-   git remote add origin https://github.com/YOUR_USERNAME/md2resume-frontend.git
-   git push -u origin main
-   ```
-
-2. **连接Vercel**
-   - 访问 [vercel.com](https://vercel.com)
-   - 点击 "New Project"
-   - 选择此仓库
-
-3. **配置后端URL**
-   部署后，在Vercel设置中更新 `vercel.json` 文件：
-   ```json
-   {
-     "routes": [
-       {
-         "src": "/api/(.*)",
-         "dest": "https://YOUR_BACKEND_URL.railway.app/api/$1"
-       }
-     ]
-   }
-   ```
-
-4. **更新API配置**
-   修改 `js/config.js` 中的生产环境URL：
-   ```javascript
-   production: {
-     apiBase: 'https://YOUR_BACKEND_URL.railway.app/api'
-   }
-   ```
-
-## 🔧 本地开发
-
-```bash
-# 使用任何静态服务器
-python3 -m http.server 3000
-# 或使用Node.js
-npx serve .
-# 或使用PHP
-php -S localhost:3000
-```
-
-## ⚙️ 配置说明
-
-### 环境检测
-应用会自动检测运行环境：
-- 本地开发（localhost/127.0.0.1）→ 使用开发API
-- 生产环境 → 使用生产API
-
-### API配置
-API配置在 `js/config.js` 中定义：
-- `API_CONFIG.baseURL`: API基础URL
-- `API_CONFIG.endpoints`: 各个API端点
+这是MD2Resume项目的前端应用，提供现代化的简历编辑和预览界面。
 
 ## 🎨 功能特性
 
-- 📝 Markdown实时编辑
-- 👁️ 实时预览
-- 🎨 8种专业模板
-- 📱 响应式设计
-- ⌨️ 键盘快捷键
+- 📝 Markdown编辑器，支持实时预览
+- 🎨 8种专业简历模板选择
+- 👁️ 全屏预览模式
+- 📱 完全响应式设计
 - 🚀 一键IPFS部署
-- 📋 部署历史管理
+- 📋 链接复制和分享
 
-## 📄 文件结构
+## 📦 技术栈
 
+- **框架**: React 18
+- **构建工具**: Vite
+- **样式**: Tailwind CSS
+- **图标**: Unicode表情符号
+- **API**: RESTful (后端API)
+
+## 🔧 安装和运行
+
+### 开发环境
+```bash
+npm install
+npm run dev
 ```
-├── index.html              # 主页面
-├── vercel.json             # Vercel配置
-├── js/
-│   ├── config.js           # API配置
-│   ├── app.js              # 主应用逻辑
-│   ├── templates.js        # 模板系统
-│   └── deployment.js       # 部署管理
-├── styles/
-│   ├── main.css            # 主要样式
-│   └── templates.css       # 模板样式
-└── test-resumes/           # 测试简历样本
+
+### 构建生产版本
+```bash
+npm run build
+npm run preview
 ```
 
-## 🔗 相关链接
+## 🌐 部署
 
-- [后端API](https://github.com/YOUR_USERNAME/md2resume-backend)
-- [演示地址](https://your-app.vercel.app)
-- [IPFS托管](https://pinme.eth.limo)
+### 使用Vercel部署
+1. 连接GitHub仓库到Vercel
+2. 配置环境变量 `VITE_API_URL`
+3. 自动部署到生产环境
+
+### 环境变量
+- `VITE_API_URL`: 后端API服务地址
+
+## 🔗 API集成
+
+前端通过以下API与后端通信：
+- `/api/pinme-status` - PinMe状态检查
+- `/api/deploy` - IPFS部署
+- `/api/templates` - 模板列表
 
 ## 📄 许可证
 
-MIT
+MIT License

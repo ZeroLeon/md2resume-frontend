@@ -27,6 +27,47 @@ class DeploymentManager {
                 e.currentTarget.style.display = 'none';
             }
         });
+
+        // 成功弹窗事件绑定
+        document.getElementById('successModal').addEventListener('click', (e) => {
+            if (e.target === e.currentTarget) {
+                e.currentTarget.style.display = 'none';
+            }
+        });
+
+        // 成功弹窗关闭按钮
+        document.querySelector('#successModal .modal-close').addEventListener('click', () => {
+            document.getElementById('successModal').style.display = 'none';
+        });
+
+        // 成功弹窗确定按钮
+        document.getElementById('successModalOk').addEventListener('click', () => {
+            document.getElementById('successModal').style.display = 'none';
+        });
+
+        // 成功弹窗预览按钮
+        document.getElementById('successModalPreview').addEventListener('click', () => {
+            const modal = document.getElementById('successModal');
+            const deployUrl = modal.dataset.deployUrl;
+            if (deployUrl) {
+                window.open(deployUrl, '_blank');
+            }
+        });
+
+        // 复制按钮事件委托
+        document.getElementById('successModal').addEventListener('click', async (e) => {
+            if (e.target.classList.contains('copy-btn')) {
+                const targetId = e.target.dataset.target;
+                const input = document.getElementById(targetId);
+                if (input) {
+                    try {
+                        await this.copyToClipboard(input.value, e.target);
+                    } catch (error) {
+                        console.error('复制失败:', error);
+                    }
+                }
+            }
+        });
     }
 
     async handleDeploy() {
@@ -36,14 +77,7 @@ class DeploymentManager {
             return;
         }
 
-        // 检查是否安装了PinMe CLI
-        const hasPinMe = await this.checkPinMeInstallation();
-        if (!hasPinMe) {
-            this.showPinMeInstallGuide();
-            return;
-        }
-
-        // 显示部署状态
+        // 直接开始部署，不需要检查PinMe安装状态（后端会检查）
         this.showDeployStatus('正在生成HTML文件...', 20);
 
         try {
@@ -90,7 +124,7 @@ class DeploymentManager {
 
     async checkPinMeInstallation() {
         try {
-            const response = await API.fetch('/pinme-status');
+            const response = await fetch('http://localhost:3001/api/pinme-status');
             const data = await response.json();
             return data.installed;
         } catch (error) {
@@ -226,15 +260,41 @@ PinMe是一个免费的IPFS部署工具，可以将您的简历永久存储在�
 
   async deployWithPinMe(file) {
         try {
-            const response = await API.fetch('/deploy', {
+            console.log('开始部署到IPFS...');
+            console.log('文件信息:', { name: file.name, size: file.size });
+
+            const response = await fetch('http://localhost:3001/api/deploy', {
                 method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
                 body: JSON.stringify({
                     htmlContent: file.content,
                     fileName: file.name
                 })
             });
 
-            const result = await response.json();
+            console.log('部署API响应状态:', response.status);
+            console.log('部署API响应头 Content-Type:', response.headers.get('Content-Type'));
+
+            // 检查响应状态
+            if (!response.ok) {
+                const errorText = await response.text();
+                console.error('API返回错误状态:', response.status, errorText);
+                throw new Error(`服务器错误: ${response.status} ${response.statusText}`);
+            }
+
+            // 尝试解析JSON
+            let result;
+            try {
+                const responseText = await response.text();
+                console.log('原始响应内容:', responseText);
+                result = JSON.parse(responseText);
+                console.log('解析后的JSON结果:', result);
+            } catch (jsonError) {
+                console.error('JSON解析失败:', jsonError);
+                throw new Error(`服务器返回了无效的JSON格式: ${jsonError.message}`);
+            }
 
             if (result.success) {
                 return {
@@ -246,6 +306,11 @@ PinMe是一个免费的IPFS部署工具，可以将您的简历永久存储在�
                     deployTime: result.result.deployTime
                 };
             } else {
+                // 如果是PinMe未安装的错误，显示安装指南
+                if (result.error && result.error.includes('PinMe CLI未安装')) {
+                    this.showPinMeInstallGuide();
+                    throw new Error('需要先安装PinMe CLI');
+                }
                 throw new Error(result.error || '部署失败');
             }
 
@@ -277,33 +342,18 @@ PinMe是一个免费的IPFS部署工具，可以将您的简历永久存储在�
     }
 
     showDeploySuccess(deployInfo) {
-        const successMessage = `
-🎉 部署成功！
+        const modal = document.getElementById('successModal');
 
-简历已成功部署到IPFS网络，获得永久访问链接：
+        // 设置链接值
+        document.getElementById('mainLink').value = deployInfo.url;
+        document.getElementById('ipfsLink').value = deployInfo.ipfsUrl;
+        document.getElementById('gatewayLink').value = deployInfo.gatewayUrl;
 
-🔗 主要链接: ${deployInfo.url}
-🌐 IPFS链接: ${deployInfo.ipfsUrl}
-📡 网关链接: ${deployInfo.gatewayUrl}
+        // 显示模态框
+        modal.style.display = 'flex';
 
-✅ 特点：
-- 永久存储，永不删除
-- 全球访问，抗审查
-- 多网关支持，确保可用性
-- 零成本，完全免费
-
-💡 提示：
-- 您可以在"部署历史"中管理所有已部署的简历
-- 链接可以直接分享给HR和招聘方
-- 支持离线缓存，访问速度更快
-        `;
-
-        alert(successMessage);
-
-        // 询问是否复制链接到剪贴板
-        if (confirm('是否复制主要链接到剪贴板？')) {
-            this.copyToClipboard(deployInfo.url);
-        }
+        // 存储当前部署信息供预览按钮使用
+        modal.dataset.deployUrl = deployInfo.url;
     }
 
     showDeployError(error) {
@@ -330,11 +380,11 @@ PinMe是一个免费的IPFS部署工具，可以将您的简历永久存储在�
         alert(errorMessage);
     }
 
-    async copyToClipboard(text) {
+    async copyToClipboard(text, buttonElement = null) {
         try {
             if (navigator.clipboard && navigator.clipboard.writeText) {
                 await navigator.clipboard.writeText(text);
-                alert('✅ 链接已复制到剪贴板');
+                this.showCopySuccess(buttonElement);
             } else {
                 // 降级方案
                 const textArea = document.createElement('textarea');
@@ -343,10 +393,40 @@ PinMe是一个免费的IPFS部署工具，可以将您的简历永久存储在�
                 textArea.select();
                 document.execCommand('copy');
                 document.body.removeChild(textArea);
-                alert('✅ 链接已复制到剪贴板');
+                this.showCopySuccess(buttonElement);
             }
         } catch (error) {
             console.error('复制失败:', error);
+            this.showCopyError(buttonElement);
+        }
+    }
+
+    showCopySuccess(buttonElement) {
+        if (buttonElement) {
+            const originalText = buttonElement.textContent;
+            buttonElement.textContent = '✅ 已复制';
+            buttonElement.classList.add('copied');
+
+            setTimeout(() => {
+                buttonElement.textContent = originalText;
+                buttonElement.classList.remove('copied');
+            }, 2000);
+        } else {
+            // 降级到alert
+            alert('✅ 链接已复制到剪贴板');
+        }
+    }
+
+    showCopyError(buttonElement) {
+        if (buttonElement) {
+            const originalText = buttonElement.textContent;
+            buttonElement.textContent = '❌ 复制失败';
+
+            setTimeout(() => {
+                buttonElement.textContent = originalText;
+            }, 2000);
+        } else {
+            // 降级到alert
             alert('❌ 复制失败，请手动复制链接');
         }
     }

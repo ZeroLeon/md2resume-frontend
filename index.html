@@ -154,6 +154,70 @@
             </div>
         </div>
 
+        <!-- 部署成功弹窗 -->
+        <div id="successModal" class="modal" style="display: none;">
+            <div class="modal-content success-modal">
+                <div class="modal-header">
+                    <div class="success-icon">🎉</div>
+                    <h3>部署成功！</h3>
+                    <button class="modal-close">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="success-message">
+                        <p>📄 简历已成功部署到IPFS网络，获得永久访问链接！</p>
+                    </div>
+
+                    <div class="links-section">
+                        <h4>🔗 访问链接</h4>
+                        <div class="link-item">
+                            <label>主要链接：</label>
+                            <div class="link-wrapper">
+                                <input type="text" id="mainLink" readonly class="link-input" value="">
+                                <button class="copy-btn" data-target="mainLink">📋 复制</button>
+                            </div>
+                        </div>
+                        <div class="link-item">
+                            <label>IPFS链接：</label>
+                            <div class="link-wrapper">
+                                <input type="text" id="ipfsLink" readonly class="link-input" value="">
+                                <button class="copy-btn" data-target="ipfsLink">📋 复制</button>
+                            </div>
+                        </div>
+                        <div class="link-item">
+                            <label>网关链接：</label>
+                            <div class="link-wrapper">
+                                <input type="text" id="gatewayLink" readonly class="link-input" value="">
+                                <button class="copy-btn" data-target="gatewayLink">📋 复制</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="features-section">
+                        <h4>✅ IPFS特性</h4>
+                        <ul>
+                            <li>🌍 永久存储，永不删除</li>
+                            <li>🚀 全球访问，抗审查</li>
+                            <li>🔧 多网关支持，确保可用性</li>
+                            <li>💰 零成本，完全免费</li>
+                        </ul>
+                    </div>
+
+                    <div class="tips-section">
+                        <h4>💡 使用提示</h4>
+                        <ul>
+                            <li>📋 您可以在"部署历史"中管理所有已部署的简历</li>
+                            <li>🔗 链接可以直接分享给HR和招聘方</li>
+                            <li>⚡ 支持离线缓存，访问速度更快</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button id="successModalOk" class="btn btn-primary">确定</button>
+                    <button id="successModalPreview" class="btn btn-success">👁️ 预览简历</button>
+                </div>
+            </div>
+        </div>
+
         <!-- 部署历史弹窗 -->
         <div id="historyModal" class="modal" style="display: none;">
             <div class="modal-content">
@@ -185,7 +249,6 @@
 
     <!-- 引入JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-    <script src="js/config.js"></script>
     <script src="js/app.js"></script>
     <script src="js/templates.js"></script>
     <script src="js/deployment.js"></script>
