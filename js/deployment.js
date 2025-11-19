@@ -1,5 +1,8 @@
+// 导入getTemplateCSS函数
+import { getTemplateCSS } from './templates.js';
+
 // PinMe部署管理类
-class DeploymentManager {
+export class DeploymentManager {
     constructor() {
         this.deployHistory = this.loadDeployHistory();
         this.bindEvents();

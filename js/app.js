@@ -1,3 +1,6 @@
+// 导入模板函数
+import { getTemplateCSS } from './templates.js';
+
 class MD2Resume {
     constructor() {
         this.currentTemplate = 'github-blue';
@@ -325,6 +328,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const app = new MD2Resume();
     // 将应用实例暴露到全局，方便部署管理器使用
     window.md2resumeApp = app;
+    console.log('MD2Resume应用初始化完成');
 });
 
 // 错误处理
@@ -335,3 +339,5 @@ window.addEventListener('error', (e) => {
 window.addEventListener('unhandledrejection', (e) => {
     console.error('未处理的Promise拒绝:', e.reason);
 });
+
+export default MD2Resume;

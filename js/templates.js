@@ -1,5 +1,5 @@
 // 模板CSS获取函数
-function getTemplateCSS(templateName) {
+export function getTemplateCSS(templateName) {
     const templates = {
         'hacker-black': `
             body {
