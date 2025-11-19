@@ -5,6 +5,11 @@ class DeploymentManager {
         this.bindEvents();
     }
 
+    getApiUrl() {
+        // 在生产环境使用环境变量，开发环境使用localhost
+        return import.meta.env.VITE_API_URL || 'http://localhost:3001';
+    }
+
     bindEvents() {
         // 部署按钮事件
         document.getElementById('deployBtn').addEventListener('click', () => {
@@ -124,7 +129,8 @@ class DeploymentManager {
 
     async checkPinMeInstallation() {
         try {
-            const response = await fetch('http://localhost:3001/api/pinme-status');
+            const apiUrl = this.getApiUrl();
+            const response = await fetch(`${apiUrl}/api/pinme-status`);
             const data = await response.json();
             return data.installed;
         } catch (error) {
@@ -263,7 +269,10 @@ PinMe是一个免费的IPFS部署工具，可以将您的简历永久存储在�
             console.log('开始部署到IPFS...');
             console.log('文件信息:', { name: file.name, size: file.size });
 
-            const response = await fetch('http://localhost:3001/api/deploy', {
+            const apiUrl = this.getApiUrl();
+            console.log('使用API URL:', apiUrl);
+
+            const response = await fetch(`${apiUrl}/api/deploy`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
