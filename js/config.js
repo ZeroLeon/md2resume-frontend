@@ -4,9 +4,9 @@ const CONFIG = {
   development: {
     apiBase: 'http://localhost:3001/api'
   },
-  // 生产环境 - 部署时需要更新为实际的后端URL
+  // 生产环境 - Railway后端API地址
   production: {
-    apiBase: 'https://YOUR_BACKEND_URL.railway.app/api'
+    apiBase: 'https://md2resume-backend-production.up.railway.app/api'
   }
 };
 
