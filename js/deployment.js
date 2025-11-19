@@ -7,7 +7,10 @@ class DeploymentManager {
 
     getApiUrl() {
         // 在生产环境使用环境变量，开发环境使用localhost
-        return import.meta.env.VITE_API_URL || 'http://localhost:3001';
+        const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:3001';
+        console.log('当前API URL:', apiUrl);
+        console.log('环境变量VITE_API_URL:', import.meta.env.VITE_API_URL);
+        return apiUrl;
     }
 
     bindEvents() {
@@ -76,12 +79,16 @@ class DeploymentManager {
     }
 
     async handleDeploy() {
+        console.log('部署按钮被点击');
         const app = window.md2resumeApp;
+        console.log('app对象:', app);
+
         if (!app || !app.mdContent.trim()) {
             alert('请先输入或上传Markdown内容');
             return;
         }
 
+        console.log('开始部署流程，内容长度:', app.mdContent.length);
         // 直接开始部署，不需要检查PinMe安装状态（后端会检查）
         this.showDeployStatus('正在生成HTML文件...', 20);
 
