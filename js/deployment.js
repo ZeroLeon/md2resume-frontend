@@ -78,23 +78,23 @@ class DeploymentManager {
         }
 
         // 直接开始部署，不需要检查PinMe安装状态（后端会检查）
-        this.showDeployStatus('正在生成HTML文件...', 20);
+        this.showDeployStatus('正在生成简历HTML...', 20);
 
         try {
             // 生成HTML文件
             const htmlContent = await this.generateHTML(app.mdContent, app.currentTemplate);
 
-            this.showDeployStatus('准备上传到IPFS...', 40);
+            this.showDeployStatus('准备上传到云端...', 40);
 
             // 创建临时文件
             const tempFile = await this.createTempFile(htmlContent);
 
-            this.showDeployStatus('正在部署到IPFS...', 60);
+            this.showDeployStatus('正在生成在线简历...', 60);
 
             // 调用PinMe部署
             const deployResult = await this.deployWithPinMe(tempFile);
 
-            this.showDeployStatus('生成ENS域名...', 80);
+            this.showDeployStatus('创建专属访问链接...', 80);
 
             // 保存部署历史
             const deployInfo = {
@@ -109,7 +109,7 @@ class DeploymentManager {
 
             this.saveDeployRecord(deployInfo);
 
-            this.showDeployStatus('部署成功！', 100);
+            this.showDeployStatus('🎉 简历生成成功！', 100);
 
             // 显示成功信息
             setTimeout(() => {
@@ -122,7 +122,7 @@ class DeploymentManager {
         }
     }
 
-    getApiUrl() {
+  getApiUrl() {
         // 在生产环境使用环境变量，开发环境使用localhost
         // 检查是否在生产环境（通过检测域名）
         const isProduction = window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1';
@@ -420,15 +420,15 @@ PinMe是一个免费的IPFS部署工具，可以将您的简历永久存储在�
 
     showDeployError(error) {
         const errorMessage = `
-❌ 部署失败
+❌ 简历生成失败
 
 错误信息: ${error}
 
 可能的原因：
-1. 网络连接问题
-2. PinMe服务暂时不可用
-3. 文件过大（PinMe限制单文件20MB）
-4. 内容包含不支持的格式
+1. 网络连接不稳定
+2. 服务暂时繁忙，请稍后重试
+3. 文件过大（建议控制在20MB以内）
+4. 内容格式需要调整
 
 解决方法：
 1. 检查网络连接
@@ -589,7 +589,7 @@ PinMe是一个免费的IPFS部署工具，可以将您的简历永久存储在�
     }
 
     deleteRecord(id) {
-        if (confirm('确定要删除这条部署记录吗？删除后只是从本地移除记录，不会影响已部署的简历。')) {
+        if (confirm('确定要删除这条简历记录吗？删除后只是从本地移除记录，不会影响已生成的在线简历。')) {
             this.deployHistory = this.deployHistory.filter(record => record.id !== id);
             localStorage.setItem('md2resume_deploy_history', JSON.stringify(this.deployHistory));
             this.showHistory(); // 刷新显示
