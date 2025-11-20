@@ -1,12 +1,13 @@
 {
   "name": "md2resume-frontend",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "MD2Resume Frontend Application",
   "type": "module",
   "scripts": {
     "dev": "python3 -m http.server 5173",
     "build": "echo 'Static site - no build needed'",
-    "preview": "python3 -m http.server 5173"
+    "preview": "python3 -m http.server 5173",
+    "vercel-build": "echo 'Static site deployment complete'"
   },
   "keywords": [
     "resume",
@@ -18,17 +19,8 @@
   ],
   "author": "ZeroLeon",
   "license": "MIT",
-  "dependencies": {
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "marked": "^5.1.2"
-  },
-  "devDependencies": {
-    "vite": "^5.0.8",
-    "tailwindcss": "^3.4.0",
-    "autoprefixer": "^10.4.16",
-    "postcss": "^8.4.32"
-  },
+  "dependencies": {},
+  "devDependencies": {},
   "engines": {
     "node": ">=16.0.0"
   }
