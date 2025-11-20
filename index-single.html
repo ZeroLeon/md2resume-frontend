@@ -359,6 +359,7 @@
 
                 // 部署历史按钮
                 document.getElementById('historyBtn').addEventListener('click', () => {
+                    this.loadDeploymentHistory();
                     document.getElementById('historyModal').style.display = 'flex';
                 });
             }
@@ -584,7 +585,9 @@
                         },
                         body: JSON.stringify({
                             htmlContent: fullHTML,
-                            fileName: `resume-${Date.now()}.html`
+                            fileName: `resume-${Date.now()}.html`,
+                            title: title,
+                            template: this.currentTemplate
                         })
                     });
 
@@ -616,6 +619,62 @@
                     statusDiv.style.display = 'none';
                     alert(`部署失败: ${error.message}`);
                 }
+            }
+
+            async loadDeploymentHistory() {
+                try {
+                    // 检测环境
+                    const isProduction = window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1';
+                    const apiUrl = isProduction ? 'https://md2resume-backend-production.up.railway.app' : 'http://localhost:3001';
+
+                    const response = await fetch(`${apiUrl}/api/history`);
+                    const result = await response.json();
+
+                    if (result.success) {
+                        this.renderDeploymentHistory(result.history);
+                    } else {
+                        console.error('获取部署历史失败:', result.error);
+                    }
+                } catch (error) {
+                    console.error('加载部署历史失败:', error);
+                }
+            }
+
+            renderDeploymentHistory(history) {
+                const historyList = document.getElementById('historyList');
+
+                if (!history || history.length === 0) {
+                    historyList.innerHTML = '<p class="no-history">暂无部署历史</p>';
+                    return;
+                }
+
+                const historyHTML = history.map(item => {
+                    const deployDate = new Date(item.deployTime).toLocaleString('zh-CN');
+                    return `
+                        <div class="history-item">
+                            <div class="history-item-header">
+                                <div class="history-item-title">${item.title}</div>
+                                <div class="history-item-time">${deployDate}</div>
+                            </div>
+                            <div class="history-item-details">
+                                <p><strong>模板:</strong> ${item.template}</p>
+                                <p><strong>文件:</strong> ${item.fileName}</p>
+                                <p><strong>CID:</strong> ${item.cid.substring(0, 20)}...</p>
+                            </div>
+                            <div class="history-item-links">
+                                <a href="${item.ensUrl}" target="_blank" class="history-item-link">主要链接</a>
+                                <a href="${item.ipfsUrl}" target="_blank" class="history-item-link">IPFS链接</a>
+                                <a href="${item.gatewayUrl}" target="_blank" class="history-item-link">网关链接</a>
+                            </div>
+                            <div class="history-item-actions">
+                                <button class="btn btn-small btn-primary" onclick="window.open('${item.ensUrl}', '_blank')">👁️ 预览</button>
+                                <button class="btn btn-small btn-secondary" onclick="navigator.clipboard.writeText('${item.ensUrl}')">📋 复制链接</button>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+
+                historyList.innerHTML = historyHTML;
             }
 
             showDeploySuccess(deployResult) {
