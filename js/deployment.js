@@ -5,16 +5,6 @@ class DeploymentManager {
         this.bindEvents();
     }
 
-    getApiUrl() {
-        // 在生产环境使用环境变量，开发环境使用localhost
-        // 检查是否在生产环境（通过检测域名）
-        const isProduction = window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1';
-        const apiUrl = isProduction ? 'https://md2resume-backend-production.up.railway.app' : 'http://localhost:3001';
-        console.log('当前环境:', isProduction ? '生产环境' : '开发环境');
-        console.log('当前API URL:', apiUrl);
-        return apiUrl;
-    }
-
     bindEvents() {
         // 部署按钮事件
         document.getElementById('deployBtn').addEventListener('click', () => {
@@ -81,16 +71,12 @@ class DeploymentManager {
     }
 
     async handleDeploy() {
-        console.log('部署按钮被点击');
         const app = window.md2resumeApp;
-        console.log('app对象:', app);
-
         if (!app || !app.mdContent.trim()) {
             alert('请先输入或上传Markdown内容');
             return;
         }
 
-        console.log('开始部署流程，内容长度:', app.mdContent.length);
         // 直接开始部署，不需要检查PinMe安装状态（后端会检查）
         this.showDeployStatus('正在生成HTML文件...', 20);
 
@@ -136,10 +122,19 @@ class DeploymentManager {
         }
     }
 
+    getApiUrl() {
+        // 在生产环境使用环境变量，开发环境使用localhost
+        // 检查是否在生产环境（通过检测域名）
+        const isProduction = window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1';
+        const apiUrl = isProduction ? 'https://md2resume-backend-production.up.railway.app' : 'http://localhost:3001';
+        console.log('当前环境:', isProduction ? '生产环境' : '开发环境');
+        console.log('当前API URL:', apiUrl);
+        return apiUrl;
+    }
+
     async checkPinMeInstallation() {
         try {
-            const apiUrl = this.getApiUrl();
-            const response = await fetch(`${apiUrl}/api/pinme-status`);
+            const response = await fetch(`${this.getApiUrl()}/api/pinme-status`);
             const data = await response.json();
             return data.installed;
         } catch (error) {
@@ -275,66 +270,87 @@ PinMe是一个免费的IPFS部署工具，可以将您的简历永久存储在�
 
   async deployWithPinMe(file) {
         try {
-            console.log('开始部署到IPFS...');
-            console.log('文件信息:', { name: file.name, size: file.size });
+            console.log('🚀 开始部署到IPFS...');
+            console.log('📄 文件信息:', { name: file.name, size: `${(file.size / 1024).toFixed(2)}KB` });
 
-            const apiUrl = this.getApiUrl();
-            console.log('使用API URL:', apiUrl);
+            const app = window.md2resumeApp;
+            const title = this.extractTitle(app.mdContent) || 'Untitled Resume';
 
-            const response = await fetch(`${apiUrl}/api/deploy`, {
+            const response = await fetch(`${this.getApiUrl()}/api/deploy`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
                     htmlContent: file.content,
-                    fileName: file.name
+                    fileName: file.name,
+                    title: title,
+                    template: app.currentTemplate
                 })
             });
 
-            console.log('部署API响应状态:', response.status);
-            console.log('部署API响应头 Content-Type:', response.headers.get('Content-Type'));
+            console.log('📡 部署API响应状态:', response.status);
 
             // 检查响应状态
             if (!response.ok) {
                 const errorText = await response.text();
-                console.error('API返回错误状态:', response.status, errorText);
-                throw new Error(`服务器错误: ${response.status} ${response.statusText}`);
+                console.error('❌ API返回错误状态:', response.status, errorText);
+
+                // 尝试解析错误响应
+                let errorResult;
+                try {
+                    errorResult = JSON.parse(errorText);
+                    throw new Error(errorResult.error || `服务器错误: ${response.status}`);
+                } catch {
+                    throw new Error(`服务器错误: ${response.status} ${response.statusText}`);
+                }
             }
 
-            // 尝试解析JSON
+            // 解析成功响应
             let result;
             try {
                 const responseText = await response.text();
-                console.log('原始响应内容:', responseText);
+                console.log('📄 原始响应内容:', responseText);
                 result = JSON.parse(responseText);
-                console.log('解析后的JSON结果:', result);
+                console.log('✅ 解析后的JSON结果:', result);
             } catch (jsonError) {
-                console.error('JSON解析失败:', jsonError);
+                console.error('❌ JSON解析失败:', jsonError);
                 throw new Error(`服务器返回了无效的JSON格式: ${jsonError.message}`);
             }
 
             if (result.success) {
+                console.log('🎉 部署成功!');
                 return {
                     hash: result.result.cid,
                     url: result.result.ensUrl,
                     ensDomain: result.result.ensUrl.replace('https://', ''),
                     ipfsUrl: result.result.ipfsUrl,
                     gatewayUrl: result.result.gatewayUrl,
-                    deployTime: result.result.deployTime
+                    pinataUrl: result.result.pinataUrl,
+                    deployTime: result.result.deployTime,
+                    title: result.result.title,
+                    template: result.result.template,
+                    debugInfo: result.result.debugInfo
                 };
             } else {
                 // 如果是PinMe未安装的错误，显示安装指南
-                if (result.error && result.error.includes('PinMe CLI未安装')) {
+                if (result.error && (result.error.includes('PinMe CLI未安装') || result.error.includes('PinMe'))) {
                     this.showPinMeInstallGuide();
-                    throw new Error('需要先安装PinMe CLI');
+                    throw new Error('需要先安装PinMe CLI工具');
                 }
-                throw new Error(result.error || '部署失败');
+                throw new Error(result.error || '部署失败，请检查网络连接');
             }
 
         } catch (error) {
-            console.error('部署API调用失败:', error);
-            throw new Error(`部署失败: ${error.message}`);
+            console.error('❌ 部署API调用失败:', error);
+
+            // 提供更详细的错误信息
+            let errorMessage = error.message;
+            if (error.message.includes('Failed to fetch')) {
+                errorMessage = '无法连接到服务器，请检查服务器是否运行在 http://localhost:3001';
+            }
+
+            throw new Error(`部署失败: ${errorMessage}`);
         }
     }
 
@@ -362,16 +378,44 @@ PinMe是一个免费的IPFS部署工具，可以将您的简历永久存储在�
     showDeploySuccess(deployInfo) {
         const modal = document.getElementById('successModal');
 
-        // 设置链接值
-        document.getElementById('mainLink').value = deployInfo.url;
-        document.getElementById('ipfsLink').value = deployInfo.ipfsUrl;
-        document.getElementById('gatewayLink').value = deployInfo.gatewayUrl;
+        // 设置链接值 - 支持多个网关
+        document.getElementById('mainLink').value = deployInfo.url; // ENS域名
+        document.getElementById('ipfsLink').value = deployInfo.ipfsUrl; // IPFS官方网关
+        document.getElementById('gatewayLink').value = deployInfo.gatewayUrl; // Cloudflare网关
+
+        // 如果有Pinata网关，更新显示
+        if (deployInfo.pinataUrl) {
+            // 检查是否已存在Pinata链接元素，如果没有则创建
+            let pinataLink = document.getElementById('pinataLink');
+            if (!pinataLink) {
+                // 在gatewayLink后面添加Pinata链接
+                const gatewayLinkItem = document.getElementById('gatewayLink').closest('.link-item');
+                const pinataLinkItem = document.createElement('div');
+                pinataLinkItem.className = 'link-item';
+                pinataLinkItem.innerHTML = `
+                    <label>Pinata网关：</label>
+                    <div class="link-wrapper">
+                        <input type="text" id="pinataLink" readonly class="link-input" value="">
+                        <button class="copy-btn" data-target="pinataLink">📋 复制</button>
+                    </div>
+                `;
+                gatewayLinkItem.parentNode.insertBefore(pinataLinkItem, gatewayLinkItem.nextSibling);
+                pinataLink = document.getElementById('pinataLink');
+            }
+            pinataLink.value = deployInfo.pinataUrl;
+        }
 
         // 显示模态框
         modal.style.display = 'flex';
 
         // 存储当前部署信息供预览按钮使用
         modal.dataset.deployUrl = deployInfo.url;
+
+        console.log('🎉 部署成功显示:', {
+            title: deployInfo.title,
+            ensUrl: deployInfo.url,
+            cid: deployInfo.hash
+        });
     }
 
     showDeployError(error) {
