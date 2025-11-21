@@ -62,13 +62,13 @@ body {
 }
 
 .section-header h2 {
-    color: white;
+    color: #2d3748; /* 深灰色，在白色背景上清晰可见 */
     font-size: 1.3rem;
     font-weight: 600;
 }
 
 .template-description {
-    color: rgba(255, 255, 255, 0.8);
+    color: #718096; /* 中灰色，描述文字 */
     font-size: 0.9rem;
 }
 

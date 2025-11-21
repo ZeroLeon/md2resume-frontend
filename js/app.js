@@ -2,174 +2,291 @@
 function getTemplateCSS(templateName) {
     const templates = {
         'hacker-black': `
+            /* 现代化的深色主题设计 */
             body {
-                background: #0d1117;
-                color: #c9d1d9;
-                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+                background: linear-gradient(135deg, #1a1a2e 0%, #2d3748 100%);
+                color: #e2e8f0;
+                font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
                 margin: 0;
-                padding: 20px;
+                padding: 0;
+                line-height: 1.6;
             }
 
             .resume-container {
-                max-width: 800px;
+                max-width: 840px;
                 margin: 0 auto;
-                background: #0d1117;
-                color: #c9d1d9;
+                background: linear-gradient(145deg, #1a1a2e 0%, #2d3748 100%);
+                color: #e2e8f0;
                 min-height: 100vh;
-                padding: 40px 20px;
+                padding: 40px 30px;
+                border-radius: 16px;
+                box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+                position: relative;
+            }
+
+            /* 背景装饰 */
+            .resume-container::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                height: 3px;
+                background: linear-gradient(90deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+                border-radius: 16px 16px 0 0;
+            }
+
+            .resume-container::after {
+                content: '';
+                position: absolute;
+                bottom: 0;
+                right: 30px;
+                width: 80px;
+                height: 80px;
+                background: radial-gradient(circle, rgba(88, 166, 255, 0.15) 0%, transparent 70%);
+                border-radius: 50%;
             }
 
             .resume-content h1 {
-                color: #58a6ff;
-                font-size: 2.5em;
+                color: #e2e8f0;
+                font-size: 2.8em;
                 font-weight: 700;
-                text-shadow: 0 0 20px rgba(88, 166, 255, 0.5);
-                margin-bottom: 10px;
+                margin-bottom: 20px;
                 line-height: 1.2;
+                text-align: center;
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
+                text-fill-color: transparent;
+                text-shadow: 0 4px 12px rgba(88, 166, 255, 0.3);
             }
 
             .resume-content h2 {
-                color: #3fb950;
-                border-bottom: 2px solid #3fb950;
-                font-size: 1.5em;
+                color: #90cdf4;
+                border-bottom: 1px solid rgba(144, 205, 244, 0.3);
+                font-size: 1.8em;
+                font-weight: 600;
+                margin-top: 40px;
+                margin-bottom: 20px;
+                padding-bottom: 12px;
                 position: relative;
-                margin-top: 30px;
-                margin-bottom: 15px;
-                padding-bottom: 8px;
+                display: flex;
+                align-items: center;
+                gap: 10px;
             }
 
             .resume-content h2::before {
-                content: ">> ";
-                color: #3fb950;
+                content: "▶";
+                color: #90cdf4;
+                font-size: 1.2em;
             }
 
             .resume-content h3 {
-                color: #58a6ff;
-                font-size: 1.3em;
-                margin-top: 20px;
-                margin-bottom: 10px;
+                color: #93c5fd;
+                font-size: 1.4em;
+                font-weight: 600;
+                margin-top: 25px;
+                margin-bottom: 15px;
+                display: flex;
+                align-items: center;
+                gap: 8px;
             }
 
+            .resume-content h3::before {
+                content: "▷";
+                color: #93c5fd;
+                font-size: 1em;
+            }
+
+            /* 联系信息区域 */
             .contact-info {
-                color: #8b949e;
-                border-left: 3px solid #3fb950;
-                padding-left: 15px;
-                margin: 20px 0;
-                font-size: 1.1em;
+                background: rgba(56, 189, 248, 0.1);
+                border-left: 4px solid #38bdf8;
+                border-radius: 8px;
+                padding: 20px;
+                margin: 25px 0;
+                backdrop-filter: blur(10px);
             }
 
             .job-title {
-                color: #58a6ff;
+                color: #90cdf4;
                 font-weight: 600;
+                font-size: 1.1em;
             }
 
             .company-info {
-                color: #8b949e;
-                opacity: 0.8;
-                margin-bottom: 12px;
+                color: #94a3b8;
+                margin-bottom: 8px;
+                font-size: 0.95em;
             }
 
+            /* 链接样式 */
             a {
-                color: #58a6ff;
-                border-bottom: 1px dotted #58a6ff;
+                color: #90cdf4;
                 text-decoration: none;
+                border-bottom: 1px solid transparent;
+                transition: all 0.3s ease;
+                display: inline-block;
+                position: relative;
             }
 
             a:hover {
-                color: #79c0ff;
-                border-bottom-color: #79c0ff;
-                text-shadow: 0 0 8px rgba(88, 166, 255, 0.8);
+                color: #f093fb;
+                border-bottom-color: #f093fb;
+                text-shadow: 0 2px 8px rgba(240, 147, 251, 0.4);
+                transform: translateY(-1px);
             }
 
+            /* 代码样式 */
             code {
-                background: #161b22;
-                color: #3fb950;
-                border: 1px solid #30363d;
-                padding: 2px 6px;
-                border-radius: 4px;
-                font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, monospace;
+                background: rgba(255, 255, 255, 0.1);
+                color: #38bdf8;
+                border: 1px solid rgba(56, 189, 248, 0.3);
+                padding: 3px 8px;
+                border-radius: 6px;
+                font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
                 font-size: 0.9em;
+                backdrop-filter: blur(4px);
             }
 
             pre {
-                background: #161b22;
-                border: 1px solid #30363d;
-                border-radius: 8px;
-                padding: 15px;
+                background: rgba(255, 255, 255, 0.05);
+                border: 1px solid rgba(56, 189, 248, 0.2);
+                border-radius: 12px;
+                padding: 20px;
                 overflow-x: auto;
-                margin: 15px 0;
+                margin: 20px 0;
+                backdrop-filter: blur(8px);
             }
 
             pre code {
-                background: none;
+                background: transparent;
                 border: none;
-                color: #c9d1d9;
+                color: #e2e8f0;
             }
 
+            /* 引用样式 */
             blockquote {
-                border-left: 4px solid #3fb950;
-                padding-left: 15px;
-                margin: 15px 0;
-                color: #8b949e;
+                border-left: 4px solid #38bdf8;
+                padding-left: 20px;
+                margin: 20px 0;
+                color: #94a3b8;
                 font-style: italic;
+                background: rgba(56, 189, 248, 0.05);
+                border-radius: 0 8px 8px 0;
+                backdrop-filter: blur(4px);
             }
 
+            /* 分隔线 */
             hr {
                 border: none;
-                border-top: 1px solid #30363d;
-                margin: 25px 0;
+                height: 1px;
+                background: linear-gradient(90deg, transparent, rgba(56, 189, 248, 0.3), transparent);
+                margin: 30px 0;
+                position: relative;
             }
 
+            hr::before {
+                content: '⚡';
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -50%);
+                background: #38bdf8;
+                color: #1a1a2e;
+                padding: 4px 8px;
+                border-radius: 20px;
+                font-size: 0.8em;
+            }
+
+            /* 表格样式 */
             table {
                 width: 100%;
-                border-collapse: collapse;
-                margin: 15px 0;
+                border-collapse: separate;
+                border-spacing: 0;
+                margin: 20px 0;
             }
 
             th, td {
-                border: 1px solid #30363d;
-                padding: 10px;
+                border: 1px solid rgba(56, 189, 248, 0.2);
+                padding: 12px 15px;
                 text-align: left;
+                background: rgba(255, 255, 255, 0.02);
             }
 
             th {
-                background: #161b22;
-                color: #58a6ff;
+                background: rgba(56, 189, 248, 0.15);
+                color: #90cdf4;
                 font-weight: 600;
+                font-size: 0.95em;
+                text-transform: uppercase;
+                letter-spacing: 0.5px;
             }
 
+            /* 列表样式 */
             ul, ol {
-                margin-bottom: 15px;
+                margin-bottom: 20px;
                 padding-left: 25px;
             }
 
             li {
-                margin-bottom: 6px;
+                margin-bottom: 8px;
                 line-height: 1.6;
+                position: relative;
             }
 
+            li::marker {
+                color: #38bdf8;
+            }
+
+            /* 段落样式 */
             p {
-                margin-bottom: 12px;
-                line-height: 1.6;
+                margin-bottom: 15px;
+                line-height: 1.7;
             }
 
+            /* 技能标签 */
             .skill-tag {
-                background: rgba(63, 185, 80, 0.2);
-                color: #3fb950;
-                border: 1px solid #3fb950;
-                padding: 4px 12px;
-                border-radius: 20px;
+                background: linear-gradient(135deg, rgba(56, 189, 248, 0.2) 0%, rgba(16, 185, 129, 0.2) 100%);
+                color: #90cdf4;
+                border: 1px solid rgba(56, 189, 248, 0.3);
+                padding: 6px 14px;
+                border-radius: 25px;
                 font-size: 0.9em;
                 font-weight: 500;
                 display: inline-block;
-                margin: 2px;
+                margin: 6px 4px;
+                backdrop-filter: blur(4px);
+                transition: all 0.3s ease;
+            }
+
+            .skill-tag:hover {
+                background: linear-gradient(135deg, rgba(56, 189, 248, 0.3) 0%, rgba(16, 185, 129, 0.3) 100%);
+                transform: translateY(-2px);
+                box-shadow: 0 4px 12px rgba(56, 189, 248, 0.3);
             }
 
             .skills-grid {
                 display: flex;
                 flex-wrap: wrap;
-                gap: 8px;
-                margin: 15px 0;
+                gap: 12px;
+                margin: 20px 0;
+            }
+
+            /* 打印样式 */
+            @media print {
+                body {
+                    background: white !important;
+                    color: black !important;
+                }
+                .resume-container {
+                    box-shadow: none !important;
+                    background: white !important;
+                    color: black !important;
+                    border-radius: 0 !important;
+                    padding: 20px !important;
+                }
             }
         `,
         'github-blue': `
