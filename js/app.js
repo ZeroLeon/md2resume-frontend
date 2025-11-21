@@ -517,12 +517,11 @@ function getTemplateCSS(templateName) {
             }
 
             .resume-content h3 {
-                color: #2c3e50;
+                color: #7f8c8d;
                 font-size: 1.3em;
                 font-weight: 500;
                 margin-top: 20px;
                 margin-bottom: 10px;
-                color: #7f8c8d;
             }
 
             .contact-info {
