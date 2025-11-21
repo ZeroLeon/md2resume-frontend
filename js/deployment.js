@@ -662,8 +662,33 @@ let deploymentManager;
 
 // 初始化部署管理器
 document.addEventListener('DOMContentLoaded', () => {
-    deploymentManager = new DeploymentManager();
+    console.log('开始初始化DeploymentManager...');
 
-    // 将实例暴露到全局，方便其他组件使用
-    window.deploymentManager = deploymentManager;
+    try {
+        deploymentManager = new DeploymentManager();
+        // 将实例暴露到全局，方便其他组件使用
+        window.deploymentManager = deploymentManager;
+        console.log('DeploymentManager初始化完成');
+
+        // 测试按钮元素是否存在
+        const deployBtn = document.getElementById('deployBtn');
+        const downloadBtn = document.getElementById('downloadBtn');
+        const historyBtn = document.getElementById('historyBtn');
+
+        console.log('按钮元素状态:', {
+            deployBtn: !!deployBtn,
+            downloadBtn: !!downloadBtn,
+            historyBtn: !!historyBtn
+        });
+
+        if (deployBtn) {
+            console.log('deployBtn存在，测试点击事件...');
+            deployBtn.addEventListener('click', () => {
+                console.log('deployBtn被点击了！');
+            });
+        }
+
+    } catch (error) {
+        console.error('DeploymentManager初始化失败:', error);
+    }
 });

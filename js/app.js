@@ -662,10 +662,28 @@ class MD2Resume {
 
 // 初始化应用
 document.addEventListener('DOMContentLoaded', () => {
-    const app = new MD2Resume();
-    // 将应用实例暴露到全局，方便部署管理器使用
-    window.md2resumeApp = app;
-    console.log('MD2Resume应用初始化完成');
+    console.log('开始初始化MD2Resume应用...');
+
+    // 检查依赖
+    if (typeof marked === 'undefined') {
+        console.error('marked库未加载！');
+        return;
+    }
+
+    if (typeof getTemplateCSS === 'undefined') {
+        console.log('getTemplateCSS函数将在MD2Resume类中定义');
+    }
+
+    try {
+        const app = new MD2Resume();
+        // 将应用实例暴露到全局，方便部署管理器使用
+        window.md2resumeApp = app;
+        console.log('MD2Resume应用初始化完成');
+        console.log('mdContent:', app.mdContent ? '有内容' : '空');
+        console.log('currentTemplate:', app.currentTemplate);
+    } catch (error) {
+        console.error('应用初始化失败:', error);
+    }
 });
 
 // 错误处理
@@ -677,4 +695,4 @@ window.addEventListener('unhandledrejection', (e) => {
     console.error('未处理的Promise拒绝:', e.reason);
 });
 
-export default MD2Resume;
+// export default MD2Resume; // 注释掉，避免在浏览器中直接加载时的语法错误
