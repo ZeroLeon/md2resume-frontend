@@ -207,20 +207,19 @@ body {
 }
 
 /* 模板预览颜色 */
-.hacker-black-preview {
-    background: #0d1117;
-    border: 2px solid #30363d;
+.elegant-blue-preview {
+    background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+    border: 2px solid #3b82f6;
 }
 
-.hacker-black-preview::after {
-    content: '';
+.elegant-blue-preview::after {
+    content: '💼';
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 30px;
-    height: 2px;
-    background: #3fb950;
+    color: white;
+    font-size: 24px;
 }
 
 .terminal-white-preview {
@@ -314,20 +313,19 @@ body {
     font-size: 20px;
 }
 
-.neon-red-preview {
-    background: #111827;
-    border: 2px solid #ef4444;
-    box-shadow: 0 0 10px rgba(239, 68, 68, 0.5);
+.warm-orange-preview {
+    background: linear-gradient(135deg, #ea580c 0%, #fb923c 100%);
+    border: 2px solid #ea580c;
 }
 
-.neon-red-preview::after {
-    content: '💡';
+.warm-orange-preview::after {
+    content: '🎨';
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    color: #ef4444;
-    font-size: 20px;
+    color: white;
+    font-size: 24px;
 }
 
 .template-card h3 {

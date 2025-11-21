@@ -1,203 +1,176 @@
 // 模板CSS获取函数
 function getTemplateCSS(templateName) {
     const templates = {
-        'hacker-black': `
-            /* 现代化的深色主题设计 */
+        'elegant-blue': `
+            /* 优雅商务蓝色主题 */
             body {
-                background: linear-gradient(135deg, #1a1a2e 0%, #2d3748 100%);
-                color: #e2e8f0;
-                font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+                background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+                color: #1e293b;
+                font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
                 margin: 0;
-                padding: 0;
+                padding: 20px;
                 line-height: 1.6;
             }
 
             .resume-container {
-                max-width: 840px;
+                max-width: 820px;
                 margin: 0 auto;
-                background: linear-gradient(145deg, #1a1a2e 0%, #2d3748 100%);
-                color: #e2e8f0;
-                min-height: 100vh;
-                padding: 40px 30px;
-                border-radius: 16px;
-                box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-                position: relative;
+                background: #ffffff;
+                color: #1e293b;
+                min-height: auto;
+                padding: 50px 40px;
+                border-radius: 12px;
+                box-shadow: 0 10px 30px rgba(30, 58, 59, 0.1);
+                border: 1px solid #e2e8f0;
             }
 
-            /* 背景装饰 */
+            /* 装饰性顶部边框 */
             .resume-container::before {
                 content: '';
                 position: absolute;
                 top: 0;
                 left: 0;
                 right: 0;
-                height: 3px;
-                background: linear-gradient(90deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
-                border-radius: 16px 16px 0 0;
+                height: 4px;
+                background: linear-gradient(90deg, #1e40af 0%, #3b82f6 50%, #60a5fa 100%);
+                border-radius: 12px 12px 0 0;
             }
 
-            .resume-container::after {
-                content: '';
-                position: absolute;
-                bottom: 0;
-                right: 30px;
-                width: 80px;
-                height: 80px;
-                background: radial-gradient(circle, rgba(88, 166, 255, 0.15) 0%, transparent 70%);
-                border-radius: 50%;
+            .resume-container {
+                position: relative;
             }
 
             .resume-content h1 {
-                color: #e2e8f0;
-                font-size: 2.8em;
+                color: #1e40af;
+                font-size: 2.5em;
                 font-weight: 700;
                 margin-bottom: 20px;
                 line-height: 1.2;
                 text-align: center;
-                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-                -webkit-background-clip: text;
-                -webkit-text-fill-color: transparent;
-                background-clip: text;
-                text-fill-color: transparent;
-                text-shadow: 0 4px 12px rgba(88, 166, 255, 0.3);
+                position: relative;
+            }
+
+            .resume-content h1::after {
+                content: '';
+                position: absolute;
+                bottom: -10px;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 80px;
+                height: 3px;
+                background: linear-gradient(90deg, #1e40af, #3b82f6);
+                border-radius: 2px;
             }
 
             .resume-content h2 {
-                color: #90cdf4;
-                border-bottom: 1px solid rgba(144, 205, 244, 0.3);
-                font-size: 1.8em;
+                color: #1e40af;
+                border-bottom: 2px solid #e2e8f0;
+                font-size: 1.6em;
                 font-weight: 600;
-                margin-top: 40px;
+                margin-top: 35px;
                 margin-bottom: 20px;
-                padding-bottom: 12px;
+                padding-bottom: 10px;
                 position: relative;
-                display: flex;
-                align-items: center;
-                gap: 10px;
             }
 
-            .resume-content h2::before {
-                content: "▶";
-                color: #90cdf4;
-                font-size: 1.2em;
+            .resume-content h2::after {
+                content: '';
+                position: absolute;
+                bottom: -2px;
+                left: 0;
+                width: 60px;
+                height: 2px;
+                background: #3b82f6;
             }
 
             .resume-content h3 {
-                color: #93c5fd;
-                font-size: 1.4em;
+                color: #334155;
+                font-size: 1.3em;
                 font-weight: 600;
                 margin-top: 25px;
-                margin-bottom: 15px;
-                display: flex;
-                align-items: center;
-                gap: 8px;
-            }
-
-            .resume-content h3::before {
-                content: "▷";
-                color: #93c5fd;
-                font-size: 1em;
+                margin-bottom: 12px;
             }
 
             /* 联系信息区域 */
             .contact-info {
-                background: rgba(56, 189, 248, 0.1);
-                border-left: 4px solid #38bdf8;
+                background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+                border: 1px solid #bfdbfe;
+                border-left: 4px solid #3b82f6;
                 border-radius: 8px;
                 padding: 20px;
                 margin: 25px 0;
-                backdrop-filter: blur(10px);
+                color: #1e40af;
             }
 
             .job-title {
-                color: #90cdf4;
+                color: #1e40af;
                 font-weight: 600;
                 font-size: 1.1em;
             }
 
             .company-info {
-                color: #94a3b8;
+                color: #64748b;
                 margin-bottom: 8px;
                 font-size: 0.95em;
             }
 
             /* 链接样式 */
             a {
-                color: #90cdf4;
+                color: #1e40af;
                 text-decoration: none;
                 border-bottom: 1px solid transparent;
                 transition: all 0.3s ease;
-                display: inline-block;
-                position: relative;
             }
 
             a:hover {
-                color: #f093fb;
-                border-bottom-color: #f093fb;
-                text-shadow: 0 2px 8px rgba(240, 147, 251, 0.4);
-                transform: translateY(-1px);
+                color: #3b82f6;
+                border-bottom-color: #3b82f6;
+                text-decoration: none;
             }
 
             /* 代码样式 */
             code {
-                background: rgba(255, 255, 255, 0.1);
-                color: #38bdf8;
-                border: 1px solid rgba(56, 189, 248, 0.3);
+                background: #f1f5f9;
+                color: #1e40af;
+                border: 1px solid #e2e8f0;
                 padding: 3px 8px;
                 border-radius: 6px;
-                font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+                font-family: 'SF Mono', 'JetBrains Mono', monospace;
                 font-size: 0.9em;
-                backdrop-filter: blur(4px);
             }
 
             pre {
-                background: rgba(255, 255, 255, 0.05);
-                border: 1px solid rgba(56, 189, 248, 0.2);
-                border-radius: 12px;
+                background: #f8fafc;
+                border: 1px solid #e2e8f0;
+                border-radius: 8px;
                 padding: 20px;
                 overflow-x: auto;
                 margin: 20px 0;
-                backdrop-filter: blur(8px);
             }
 
             pre code {
-                background: transparent;
+                background: none;
                 border: none;
-                color: #e2e8f0;
+                color: #334155;
             }
 
             /* 引用样式 */
             blockquote {
-                border-left: 4px solid #38bdf8;
+                border-left: 4px solid #3b82f6;
                 padding-left: 20px;
                 margin: 20px 0;
-                color: #94a3b8;
+                color: #64748b;
                 font-style: italic;
-                background: rgba(56, 189, 248, 0.05);
+                background: #f8fafc;
                 border-radius: 0 8px 8px 0;
-                backdrop-filter: blur(4px);
             }
 
             /* 分隔线 */
             hr {
                 border: none;
                 height: 1px;
-                background: linear-gradient(90deg, transparent, rgba(56, 189, 248, 0.3), transparent);
+                background: linear-gradient(90deg, transparent, #cbd5e1, transparent);
                 margin: 30px 0;
-                position: relative;
-            }
-
-            hr::before {
-                content: '⚡';
-                position: absolute;
-                left: 50%;
-                top: 50%;
-                transform: translate(-50%, -50%);
-                background: #38bdf8;
-                color: #1a1a2e;
-                padding: 4px 8px;
-                border-radius: 20px;
-                font-size: 0.8em;
             }
 
             /* 表格样式 */
@@ -206,22 +179,22 @@ function getTemplateCSS(templateName) {
                 border-collapse: separate;
                 border-spacing: 0;
                 margin: 20px 0;
+                border: 1px solid #e2e8f0;
+                border-radius: 8px;
+                overflow: hidden;
             }
 
             th, td {
-                border: 1px solid rgba(56, 189, 248, 0.2);
+                border: 1px solid #e2e8f0;
                 padding: 12px 15px;
                 text-align: left;
-                background: rgba(255, 255, 255, 0.02);
             }
 
             th {
-                background: rgba(56, 189, 248, 0.15);
-                color: #90cdf4;
+                background: #f1f5f9;
+                color: #1e40af;
                 font-weight: 600;
                 font-size: 0.95em;
-                text-transform: uppercase;
-                letter-spacing: 0.5px;
             }
 
             /* 列表样式 */
@@ -233,45 +206,41 @@ function getTemplateCSS(templateName) {
             li {
                 margin-bottom: 8px;
                 line-height: 1.6;
-                position: relative;
-            }
-
-            li::marker {
-                color: #38bdf8;
+                color: #475569;
             }
 
             /* 段落样式 */
             p {
                 margin-bottom: 15px;
                 line-height: 1.7;
+                color: #475569;
             }
 
             /* 技能标签 */
             .skill-tag {
-                background: linear-gradient(135deg, rgba(56, 189, 248, 0.2) 0%, rgba(16, 185, 129, 0.2) 100%);
-                color: #90cdf4;
-                border: 1px solid rgba(56, 189, 248, 0.3);
+                background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+                color: #1e40af;
+                border: 1px solid #bfdbfe;
                 padding: 6px 14px;
-                border-radius: 25px;
+                border-radius: 20px;
                 font-size: 0.9em;
                 font-weight: 500;
                 display: inline-block;
-                margin: 6px 4px;
-                backdrop-filter: blur(4px);
+                margin: 4px 6px 4px 0;
                 transition: all 0.3s ease;
             }
 
             .skill-tag:hover {
-                background: linear-gradient(135deg, rgba(56, 189, 248, 0.3) 0%, rgba(16, 185, 129, 0.3) 100%);
-                transform: translateY(-2px);
-                box-shadow: 0 4px 12px rgba(56, 189, 248, 0.3);
+                background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+                transform: translateY(-1px);
+                box-shadow: 0 2px 8px rgba(59, 130, 246, 0.2);
             }
 
             .skills-grid {
                 display: flex;
                 flex-wrap: wrap;
-                gap: 12px;
-                margin: 20px 0;
+                gap: 8px;
+                margin: 15px 0;
             }
 
             /* 打印样式 */
@@ -279,13 +248,14 @@ function getTemplateCSS(templateName) {
                 body {
                     background: white !important;
                     color: black !important;
+                    padding: 0 !important;
                 }
                 .resume-container {
                     box-shadow: none !important;
-                    background: white !important;
-                    color: black !important;
+                    border: none !important;
                     border-radius: 0 !important;
                     padding: 20px !important;
+                    margin: 0 !important;
                 }
             }
         `,
@@ -448,6 +418,393 @@ function getTemplateCSS(templateName) {
                 flex-wrap: wrap;
                 gap: 8px;
                 margin: 15px 0;
+            }
+        `,
+        'warm-orange': `
+            /* 温暖活力橙色主题 */
+            body {
+                background: linear-gradient(135deg, #fff7ed 0%, #fed7aa 100%);
+                color: #7c2d12;
+                font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+                margin: 0;
+                padding: 20px;
+                line-height: 1.6;
+            }
+
+            .resume-container {
+                max-width: 840px;
+                margin: 0 auto;
+                background: #ffffff;
+                color: #7c2d12;
+                min-height: auto;
+                padding: 45px 40px;
+                border-radius: 16px;
+                box-shadow: 0 8px 25px rgba(251, 146, 60, 0.15);
+                border: 2px solid #fed7aa;
+                position: relative;
+                overflow: hidden;
+            }
+
+            /* 装饰性背景图案 */
+            .resume-container::before {
+                content: '';
+                position: absolute;
+                top: -50%;
+                right: -50%;
+                width: 200px;
+                height: 200px;
+                background: radial-gradient(circle, rgba(251, 146, 60, 0.1) 0%, transparent 70%);
+                border-radius: 50%;
+                z-index: 0;
+            }
+
+            .resume-container::after {
+                content: '';
+                position: absolute;
+                bottom: -30%;
+                left: -30%;
+                width: 150px;
+                height: 150px;
+                background: radial-gradient(circle, rgba(251, 146, 60, 0.08) 0%, transparent 70%);
+                border-radius: 50%;
+                z-index: 0;
+            }
+
+            .resume-content {
+                position: relative;
+                z-index: 1;
+            }
+
+            .resume-content h1 {
+                color: #ea580c;
+                font-size: 2.6em;
+                font-weight: 700;
+                margin-bottom: 25px;
+                line-height: 1.3;
+                text-align: center;
+                position: relative;
+            }
+
+            .resume-content h1::before {
+                content: '🎨';
+                position: absolute;
+                top: -15px;
+                right: calc(50% + 100px);
+                font-size: 1.2em;
+                opacity: 0.7;
+            }
+
+            .resume-content h1::after {
+                content: '';
+                position: absolute;
+                bottom: -8px;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 100px;
+                height: 3px;
+                background: linear-gradient(90deg, #ea580c, #fb923c);
+                border-radius: 2px;
+            }
+
+            .resume-content h2 {
+                color: #ea580c;
+                border-bottom: 2px solid #fed7aa;
+                font-size: 1.7em;
+                font-weight: 600;
+                margin-top: 40px;
+                margin-bottom: 20px;
+                padding-bottom: 12px;
+                position: relative;
+                display: flex;
+                align-items: center;
+                gap: 10px;
+            }
+
+            .resume-content h2::before {
+                content: "▶";
+                color: #fb923c;
+                font-size: 0.8em;
+            }
+
+            .resume-content h2::after {
+                content: '';
+                position: absolute;
+                bottom: -2px;
+                left: 0;
+                width: 70px;
+                height: 2px;
+                background: linear-gradient(90deg, #ea580c, #fb923c);
+            }
+
+            .resume-content h3 {
+                color: #c2410c;
+                font-size: 1.4em;
+                font-weight: 600;
+                margin-top: 25px;
+                margin-bottom: 15px;
+                position: relative;
+                padding-left: 20px;
+            }
+
+            .resume-content h3::before {
+                content: "•";
+                position: absolute;
+                left: 0;
+                color: #fb923c;
+                font-size: 1.2em;
+            }
+
+            /* 联系信息区域 */
+            .contact-info {
+                background: linear-gradient(135deg, #fff7ed 0%, #ffedd5 100%);
+                border: 2px solid #fed7aa;
+                border-left: 5px solid #fb923c;
+                border-radius: 12px;
+                padding: 20px 25px;
+                margin: 30px 0;
+                color: #ea580c;
+                position: relative;
+                overflow: hidden;
+            }
+
+            .contact-info::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                height: 3px;
+                background: linear-gradient(90deg, #ea580c, #fb923c, #fed7aa);
+            }
+
+            .job-title {
+                color: #ea580c;
+                font-weight: 600;
+                font-size: 1.1em;
+            }
+
+            .company-info {
+                color: #9a3412;
+                margin-bottom: 10px;
+                font-size: 0.95em;
+            }
+
+            /* 链接样式 */
+            a {
+                color: #ea580c;
+                text-decoration: none;
+                border-bottom: 1px solid transparent;
+                transition: all 0.3s ease;
+                position: relative;
+            }
+
+            a:hover {
+                color: #c2410c;
+                border-bottom-color: #fb923c;
+                text-shadow: 0 1px 3px rgba(251, 146, 60, 0.3);
+            }
+
+            /* 代码样式 */
+            code {
+                background: linear-gradient(135deg, #fff7ed 0%, #fed7aa 100%);
+                color: #ea580c;
+                border: 1px solid #fed7aa;
+                padding: 4px 10px;
+                border-radius: 8px;
+                font-family: 'SF Mono', 'JetBrains Mono', monospace;
+                font-size: 0.9em;
+                font-weight: 500;
+            }
+
+            pre {
+                background: #fff7ed;
+                border: 2px solid #fed7aa;
+                border-radius: 12px;
+                padding: 20px;
+                overflow-x: auto;
+                margin: 25px 0;
+                position: relative;
+            }
+
+            pre::before {
+                content: '</>';
+                position: absolute;
+                top: 8px;
+                right: 12px;
+                color: #fb923c;
+                font-family: monospace;
+                font-size: 0.8em;
+                opacity: 0.6;
+            }
+
+            pre code {
+                background: none;
+                border: none;
+                color: #7c2d12;
+                padding: 0;
+            }
+
+            /* 引用样式 */
+            blockquote {
+                border-left: 5px solid #fb923c;
+                padding-left: 20px;
+                margin: 25px 0;
+                color: #9a3412;
+                font-style: italic;
+                background: linear-gradient(135deg, #fff7ed 0%, #ffedd5 100%);
+                border-radius: 0 12px 12px 0;
+                border: 1px solid #fed7aa;
+                border-left: 5px solid #fb923c;
+            }
+
+            /* 分隔线 */
+            hr {
+                border: none;
+                height: 2px;
+                background: linear-gradient(90deg, transparent, #fb923c, transparent);
+                margin: 35px 0;
+                position: relative;
+            }
+
+            hr::before {
+                content: '🔥';
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -50%);
+                background: #fff7ed;
+                color: #fb923c;
+                padding: 5px 12px;
+                border-radius: 20px;
+                font-size: 0.9em;
+                border: 1px solid #fed7aa;
+            }
+
+            /* 表格样式 */
+            table {
+                width: 100%;
+                border-collapse: separate;
+                border-spacing: 0;
+                margin: 25px 0;
+                border: 2px solid #fed7aa;
+                border-radius: 12px;
+                overflow: hidden;
+            }
+
+            th, td {
+                border: 1px solid #fed7aa;
+                padding: 15px;
+                text-align: left;
+            }
+
+            th {
+                background: linear-gradient(135deg, #ea580c 0%, #fb923c 100%);
+                color: white;
+                font-weight: 600;
+                font-size: 0.95em;
+                text-transform: uppercase;
+                letter-spacing: 0.5px;
+            }
+
+            td {
+                background: #fff7ed;
+            }
+
+            /* 列表样式 */
+            ul, ol {
+                margin-bottom: 20px;
+                padding-left: 30px;
+            }
+
+            li {
+                margin-bottom: 10px;
+                line-height: 1.7;
+                color: #7c2d12;
+                position: relative;
+            }
+
+            li::marker {
+                color: #fb923c;
+                font-weight: bold;
+            }
+
+            /* 段落样式 */
+            p {
+                margin-bottom: 18px;
+                line-height: 1.8;
+                color: #7c2d12;
+            }
+
+            /* 技能标签 */
+            .skill-tag {
+                background: linear-gradient(135deg, #fff7ed 0%, #fed7aa 100%);
+                color: #ea580c;
+                border: 2px solid #fb923c;
+                padding: 8px 16px;
+                border-radius: 25px;
+                font-size: 0.9em;
+                font-weight: 500;
+                display: inline-block;
+                margin: 6px 8px 6px 0;
+                transition: all 0.3s ease;
+                position: relative;
+                overflow: hidden;
+            }
+
+            .skill-tag::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: -100%;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(90deg, transparent, rgba(251, 146, 60, 0.2), transparent);
+                transition: left 0.5s ease;
+            }
+
+            .skill-tag:hover {
+                background: linear-gradient(135deg, #fed7aa 0%, #fdba74 100%);
+                transform: translateY(-2px);
+                box-shadow: 0 4px 15px rgba(251, 146, 60, 0.3);
+                border-color: #ea580c;
+            }
+
+            .skill-tag:hover::before {
+                left: 100%;
+            }
+
+            .skills-grid {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 10px;
+                margin: 20px 0;
+            }
+
+            /* 强调文本 */
+            strong {
+                color: #ea580c;
+                font-weight: 600;
+            }
+
+            /* 打印样式 */
+            @media print {
+                body {
+                    background: white !important;
+                    color: black !important;
+                    padding: 0 !important;
+                }
+                .resume-container {
+                    box-shadow: none !important;
+                    border: 1px solid #ccc !important;
+                    border-radius: 0 !important;
+                    padding: 20px !important;
+                    margin: 0 !important;
+                    background: white !important;
+                }
+                .resume-container::before,
+                .resume-container::after {
+                    display: none !important;
+                }
             }
         `
     };
