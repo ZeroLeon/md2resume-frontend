@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MD2Resume - 一键生成专业简历网站</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/templates.css">
+</head>
+<body>
+    <div class="container">
+        <!-- 头部 -->
+        <header class="header">
+            <h1>📄 MD2Resume</h1>
+            <p class="subtitle">专业的Markdown简历在线生成工具</p>
+        </header>
+
+        <!-- 主要内容区 -->
+        <div class="main-content">
+            <!-- 左侧：输入区 -->
+            <div class="input-section">
+                <div class="section-header">
+                    <h2>📝 Markdown输入</h2>
+                    <div class="input-actions">
+                        <button id="uploadBtn" class="btn btn-secondary">📁 上传MD文件</button>
+                        <button id="clearBtn" class="btn btn-outline">🗑️ 清空</button>
+                    </div>
+                </div>
+
+                <div class="input-wrapper">
+                    <textarea id="mdInput" placeholder="在此粘贴您的Markdown简历内容...
+
+示例格式：
+# 张三
+**全栈开发工程师** | 📧 zhangsan@email.com | 📱 138-xxxx-xxxx | 📍 北京市
+
+## 💼 工作经历
+
+### 高级前端工程师 | 科技公司 (2022.01 - 至今)
+- 使用React和TypeScript开发企业级应用
+- 负责前端架构设计和性能优化
+- 带领5人团队完成核心产品重构
+
+## 🎯 技能专长
+- **前端**: React, Vue, TypeScript, JavaScript
+- **后端**: Node.js, Python, MySQL, MongoDB
+- **工具**: Git, Docker, CI/CD, AWS
+
+## 🎓 教育背景
+**计算机科学与技术** | 本科 | 某某大学 (2018-2022)"></textarea>
+                    <input type="file" id="fileInput" accept=".md,.markdown" style="display: none;">
+                </div>
+            </div>
+
+            <!-- 右侧：预览区 -->
+            <div class="preview-section">
+                <div class="section-header">
+                    <h2>👁️ 实时预览</h2>
+                    <div class="preview-actions">
+                        <button id="fullscreenBtn" class="btn btn-secondary">🔍 全屏预览</button>
+                    </div>
+                </div>
+
+                <div class="preview-wrapper">
+                    <div id="previewContent" class="preview-content">
+                        <div class="preview-placeholder">
+                            <p>📄 简历预览将在这里显示</p>
+                            <p>请在左侧输入Markdown内容或上传文件</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 模板选择区 -->
+        <div class="template-section">
+            <div class="section-header">
+                <h2>🎨 选择简历模板</h2>
+                <p class="template-description">8种专业设计风格，适配不同行业和职位需求</p>
+            </div>
+
+            <div class="template-grid">
+                <div class="template-card" data-template="hacker-black">
+                    <div class="template-preview hacker-black-preview"></div>
+                    <h3>极客黑</h3>
+                    <p>暗色主题，绿字高亮</p>
+                </div>
+
+                <div class="template-card" data-template="terminal-white">
+                    <div class="template-preview terminal-white-preview"></div>
+                    <h3>终端白</h3>
+                    <p>终端界面风格</p>
+                </div>
+
+                <div class="template-card" data-template="code-gray">
+                    <div class="template-preview code-gray-preview"></div>
+                    <h3>代码灰</h3>
+                    <p>中性色调，代码风格</p>
+                </div>
+
+                <div class="template-card" data-template="github-blue">
+                    <div class="template-preview github-blue-preview"></div>
+                    <h3>GitHub蓝</h3>
+                    <p>仿GitHub风格</p>
+                </div>
+
+                <div class="template-card" data-template="minimal-green">
+                    <div class="template-preview minimal-green-preview"></div>
+                    <h3>简约绿</h3>
+                    <p>清新简洁设计</p>
+                </div>
+
+                <div class="template-card" data-template="business-orange">
+                    <div class="template-preview business-orange-preview"></div>
+                    <h3>商务橙</h3>
+                    <p>专业商务感</p>
+                </div>
+
+                <div class="template-card" data-template="gradient-purple">
+                    <div class="template-preview gradient-purple-preview"></div>
+                    <h3>渐变紫</h3>
+                    <p>现代渐变效果</p>
+                </div>
+
+                <div class="template-card" data-template="neon-red">
+                    <div class="template-preview neon-red-preview"></div>
+                    <h3>霓虹红</h3>
+                    <p>霓虹灯技术感</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 操作按钮区 -->
+        <div class="action-section">
+            <div class="action-buttons">
+                <button id="downloadBtn" class="btn btn-primary">
+                    💾 下载HTML文件
+                </button>
+                <button id="deployBtn" class="btn btn-success">
+                    🌐 生成在线简历
+                </button>
+                <button id="historyBtn" class="btn btn-secondary">
+                    📋 简历历史
+                </button>
+            </div>
+
+            <div id="deployStatus" class="deploy-status" style="display: none;">
+                <div class="deploy-progress">
+                    <div class="progress-bar">
+                        <div class="progress-fill"></div>
+                    </div>
+                    <p class="deploy-message">准备部署...</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 生成成功弹窗 -->
+        <div id="successModal" class="modal" style="display: none;">
+            <div class="modal-content success-modal">
+                <div class="modal-header">
+                    <div class="success-icon">🎉</div>
+                    <h3>在线简历生成成功！</h3>
+                    <button class="modal-close">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="success-message">
+                        <p>📄 您的专业简历网站已生成完成，获得永久在线访问链接！</p>
+                    </div>
+
+                    <div class="links-section">
+                        <h4>🔗 访问链接</h4>
+                        <div class="link-item">
+                            <label>主要链接：</label>
+                            <div class="link-wrapper">
+                                <input type="text" id="mainLink" readonly class="link-input" value="">
+                                <button class="copy-btn" data-target="mainLink">📋 复制</button>
+                            </div>
+                        </div>
+                        <div class="link-item">
+                            <label>IPFS链接：</label>
+                            <div class="link-wrapper">
+                                <input type="text" id="ipfsLink" readonly class="link-input" value="">
+                                <button class="copy-btn" data-target="ipfsLink">📋 复制</button>
+                            </div>
+                        </div>
+                        <div class="link-item">
+                            <label>网关链接：</label>
+                            <div class="link-wrapper">
+                                <input type="text" id="gatewayLink" readonly class="link-input" value="">
+                                <button class="copy-btn" data-target="gatewayLink">📋 复制</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="features-section">
+                        <h4>✅ 简历特性</h4>
+                        <ul>
+                            <li>🌍 永久在线，无需维护</li>
+                            <li>🚀 全球快速访问</li>
+                            <li>🔧 多重备份，确保稳定</li>
+                            <li>💰 完全免费使用</li>
+                        </ul>
+                    </div>
+
+                    <div class="tips-section">
+                        <h4>💡 使用指南</h4>
+                        <ul>
+                            <li>📋 在"简历历史"中管理您的所有在线简历</li>
+                            <li>🔗 专属链接可直接分享给HR和招聘方</li>
+                            <li>⚡ 支持全球访问，面试时展示更专业</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button id="successModalOk" class="btn btn-primary">确定</button>
+                    <button id="successModalPreview" class="btn btn-success">👁️ 预览简历</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 简历历史弹窗 -->
+        <div id="historyModal" class="modal" style="display: none;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>📋 简历历史</h3>
+                    <button class="modal-close">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div id="historyList" class="history-list">
+                        <p class="no-history">暂无简历历史</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 全屏预览弹窗 -->
+        <div id="fullscreenModal" class="modal" style="display: none;">
+            <div class="modal-content fullscreen">
+                <div class="modal-header">
+                    <h3>👁️ 全屏预览</h3>
+                    <button class="modal-close">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div id="fullscreenPreview" class="fullscreen-preview"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 引入JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/templates.js"></script>
+    <script src="js/deployment.js"></script>
+    <script src="build-timestamp.js?v=20241120"></script>
+</body>
+</html>
