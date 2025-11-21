@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "python3 -m http.server 5173",
-    "build": "mkdir -p dist && cp index-single.html dist/index.html && cp -r styles dist/ || true",
+    "build": "mkdir -p dist && cp index.html dist/index.html && cp -r styles dist/ || true",
     "preview": "python3 -m http.server 5173",
     "vercel-build": "npm run build"
   },
