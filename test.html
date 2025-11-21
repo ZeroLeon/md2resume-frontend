@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>JavaScript 测试</title>
+</head>
+<body>
+    <h1>JavaScript 测试页面</h1>
+    <button id="testBtn">测试按钮</button>
+    <div id="output"></div>
+
+    <script>
+        console.log('页面加载完成');
+
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('DOMContentLoaded 事件触发');
+
+            const testBtn = document.getElementById('testBtn');
+            const output = document.getElementById('output');
+
+            testBtn.addEventListener('click', () => {
+                console.log('按钮被点击了！');
+                output.textContent = '按钮点击成功！时间: ' + new Date().toLocaleTimeString();
+            });
+
+            output.textContent = 'JavaScript 初始化完成！';
+        });
+    </script>
+</body>
+</html>

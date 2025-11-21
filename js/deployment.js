@@ -167,7 +167,10 @@ PinMe是一个免费的IPFS部署工具，可以将您的简历永久存储在�
     async generateHTML(mdContent, template) {
         try {
             const htmlContent = marked.parse(mdContent);
-            const templateCSS = getTemplateCSS(template);
+            // 确保getTemplateCSS函数可用
+            const templateCSS = (typeof getTemplateCSS === 'function')
+                ? getTemplateCSS(template)
+                : this.getDefaultCSS();
 
             const title = this.extractTitle(mdContent) || '简历';
 
@@ -594,6 +597,63 @@ PinMe是一个免费的IPFS部署工具，可以将您的简历永久存储在�
             localStorage.setItem('md2resume_deploy_history', JSON.stringify(this.deployHistory));
             this.showHistory(); // 刷新显示
         }
+    }
+
+    getDefaultCSS() {
+        return `
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+                margin: 0;
+                padding: 20px;
+                background: #ffffff;
+                color: #24292e;
+            }
+            .resume-container {
+                max-width: 800px;
+                margin: 0 auto;
+                background: #ffffff;
+                color: #24292e;
+                min-height: 100vh;
+                padding: 40px 20px;
+            }
+            .resume-content h1 {
+                color: #0366d6;
+                font-size: 2.4em;
+                font-weight: 700;
+                margin-bottom: 15px;
+                line-height: 1.2;
+            }
+            .resume-content h2 {
+                color: #0366d6;
+                border-bottom: 2px solid #e1e4e8;
+                font-size: 1.5em;
+                margin-top: 30px;
+                margin-bottom: 15px;
+                padding-bottom: 8px;
+            }
+            .resume-content h3 {
+                color: #24292e;
+                font-size: 1.3em;
+                margin-top: 20px;
+                margin-bottom: 10px;
+            }
+            .resume-content p {
+                margin-bottom: 12px;
+                line-height: 1.6;
+            }
+            .resume-content ul, .resume-content ol {
+                margin-bottom: 15px;
+                padding-left: 25px;
+            }
+            .resume-content li {
+                margin-bottom: 6px;
+                line-height: 1.6;
+            }
+            @media print {
+                body { background: white !important; color: black !important; }
+                .resume-container { box-shadow: none !important; background: white !important; color: black !important; }
+            }
+        `;
     }
 }
 
