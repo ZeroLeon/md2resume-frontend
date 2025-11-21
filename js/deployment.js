@@ -381,32 +381,8 @@ PinMe是一个免费的IPFS部署工具，可以将您的简历永久存储在�
     showDeploySuccess(deployInfo) {
         const modal = document.getElementById('successModal');
 
-        // 设置链接值 - 支持多个网关
-        document.getElementById('mainLink').value = deployInfo.url; // ENS域名
-        document.getElementById('ipfsLink').value = deployInfo.ipfsUrl; // IPFS官方网关
-        document.getElementById('gatewayLink').value = deployInfo.gatewayUrl; // Cloudflare网关
-
-        // 如果有Pinata网关，更新显示
-        if (deployInfo.pinataUrl) {
-            // 检查是否已存在Pinata链接元素，如果没有则创建
-            let pinataLink = document.getElementById('pinataLink');
-            if (!pinataLink) {
-                // 在gatewayLink后面添加Pinata链接
-                const gatewayLinkItem = document.getElementById('gatewayLink').closest('.link-item');
-                const pinataLinkItem = document.createElement('div');
-                pinataLinkItem.className = 'link-item';
-                pinataLinkItem.innerHTML = `
-                    <label>Pinata网关：</label>
-                    <div class="link-wrapper">
-                        <input type="text" id="pinataLink" readonly class="link-input" value="">
-                        <button class="copy-btn" data-target="pinataLink">📋 复制</button>
-                    </div>
-                `;
-                gatewayLinkItem.parentNode.insertBefore(pinataLinkItem, gatewayLinkItem.nextSibling);
-                pinataLink = document.getElementById('pinataLink');
-            }
-            pinataLink.value = deployInfo.pinataUrl;
-        }
+        // 只设置主要链接
+        document.getElementById('mainLink').value = deployInfo.url;
 
         // 显示模态框
         modal.style.display = 'flex';
